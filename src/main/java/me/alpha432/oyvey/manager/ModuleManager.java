@@ -41,6 +41,7 @@ public class ModuleManager
         this.modules.add(new Dashboard());
         this.modules.add(new FontMod());
         this.modules.add(new HUD());
+        this.modules.add(new Radar());
         
         // combat
         this.modules.add(new AntiDesyncC());
@@ -65,6 +66,7 @@ public class ModuleManager
         
         // player
         this.modules.add(new ChestSwap());
+        this.modules.add(new DirectionModifier());
         this.modules.add(new Instamine());
         this.modules.add(new MCP());
         this.modules.add(new MultiTask());

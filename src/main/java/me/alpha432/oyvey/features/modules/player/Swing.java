@@ -6,7 +6,7 @@ import me.alpha432.oyvey.features.setting.Setting;
 public class Swing extends Module {
     private static Swing INSTANCE = new Swing();
     
-    public enum SwingMode {Mainhand, Offhand, Offhandc, None}
+    public enum SwingMode {Mainhand, Offhand, Offhandc, None, Default}
     public Setting<SwingMode> swingmode = register(new Setting("Mode", SwingMode.Mainhand));
     
     public Swing() {

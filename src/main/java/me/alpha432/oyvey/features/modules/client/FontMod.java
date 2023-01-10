@@ -18,6 +18,7 @@ public class FontMod
     public Setting<Boolean> fractionalMetrics = this.register(new Setting<Boolean>("Metrics", Boolean.valueOf(true), "Thinner font."));
     public Setting<Integer> fontSize = this.register(new Setting<Integer>("Size", Integer.valueOf(18), Integer.valueOf(12), Integer.valueOf(30), "Size of the font."));
     public Setting<Integer> fontStyle = this.register(new Setting<Integer>("Style", Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(3), "Style of the font."));
+    public Setting<Boolean> minecraft = this.register(new Setting<Boolean>("Minecraft", Boolean.valueOf(false), "Overrides Minecraft font."));
     private boolean reloadFont = false;
 
     public FontMod() {

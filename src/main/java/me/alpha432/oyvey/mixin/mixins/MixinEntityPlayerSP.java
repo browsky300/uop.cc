@@ -73,6 +73,10 @@ public abstract class MixinEntityPlayerSP
                 case None: {
                     break;
                 }
+                case Default: {
+                    super.swingArm(enumHand);
+                    break;
+                }
             }
             Util.mc.getConnection().sendPacket(new CPacketAnimation(enumHand));
             info.cancel();
