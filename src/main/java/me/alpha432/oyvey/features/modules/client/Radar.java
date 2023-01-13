@@ -59,10 +59,10 @@ public class Radar extends Module {
         
         RenderUtil.drawRect(x + 49, y + 49, x + 51, y + 51, ColorUtil.toRGBA(255, 0, 0));
         
-        RenderUtil.drawRect(x, y, x + 101, y + 1, ColorUtil.toRGBA(maincolor));
-        RenderUtil.drawRect(x, y, x + 1, y + 101, ColorUtil.toRGBA(maincolor));
-        RenderUtil.drawRect(x + 101, y + 101, x + 100, y + 1, ColorUtil.toRGBA(maincolor));
-        RenderUtil.drawRect(x + 101, y + 101, x + 1, y + 100, ColorUtil.toRGBA(maincolor));
+        RenderUtil.drawRect(x, y, x + 101, y + 1, ColorUtil.toRGBA(64, 64, 64, 255));
+        RenderUtil.drawRect(x, y, x + 1, y + 101, ColorUtil.toRGBA(64, 64, 64, 255));
+        RenderUtil.drawRect(x + 101, y + 101, x + 100, y + 1, ColorUtil.toRGBA(64, 64, 64, 255));
+        RenderUtil.drawRect(x + 101, y + 101, x + 1, y + 100, ColorUtil.toRGBA(64, 64, 64, 255));
         
     }
 } 

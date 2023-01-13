@@ -57,11 +57,13 @@ public class ModuleManager
         this.modules.add(new FakeDuelMessage());
         this.modules.add(new GoodLuckCharm());
         this.modules.add(new NoTrace());
+        this.modules.add(new PacketLogger());
         this.modules.add(new PopCounter());
         this.modules.add(new ToolTips());
         this.modules.add(new XormiosModule());
         
         // movement
+        this.modules.add(new LagBack());
         this.modules.add(new RoadManOvaMod());
         
         // player
@@ -78,11 +80,13 @@ public class ModuleManager
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
         this.modules.add(new CustomSkins());
+        this.modules.add(new CrystalMod());
         this.modules.add(new ESP());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
+        this.modules.add(new LeftHand());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
         this.modules.add(new RusherCapes());

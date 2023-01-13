@@ -2,6 +2,7 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
+import me.alpha432.oyvey.features.modules.render.CrystalMod;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderCrystal;
@@ -44,6 +45,13 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
         bindTexture(ENDER_CRYSTAL_TEXTURES);
         float f1 = MathHelper.sin(f * 0.2F) / 2.0F + 0.5F;
         f1 += f1 * f1;
+        
+        if (CrystalMod.getINSTANCE().isOn()) {
+            GlStateManager.scale(CrystalMod.getINSTANCE().size.getValue(), CrystalMod.getINSTANCE().size.getValue(), CrystalMod.getINSTANCE().size.getValue());
+            f *= CrystalMod.getINSTANCE().speed.getValue();
+            f1 *= CrystalMod.getINSTANCE().oscillate.getValue();
+        }
+        
         if (this.renderOutlines) {
             GlStateManager.enableColorMaterial();
             GlStateManager.enableOutlineMode(getTeamColor(entity));
