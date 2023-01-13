@@ -2,3 +2,4 @@ clear
 ./gradlew clean
 ./gradlew build
 cp build/libs/alpha432-0.0.3-release.jar ~/.local/share/multimc/instances/test/.minecraft/mods
+cp build/libs/alpha432-0.0.3-release.jar ~/.local/share/multimc/instances/game/.minecraft/mods
