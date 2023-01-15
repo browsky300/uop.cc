@@ -19,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.alpha432.oyvey.features.modules.render.NoSway;
+import me.alpha432.oyvey.features.modules.render.StackShow;
+import net.minecraft.init.Items;
 
 @Mixin(value = {ItemRenderer.class})
 public abstract class MixinItemRenderer {
@@ -50,6 +52,11 @@ public abstract class MixinItemRenderer {
                 xOffset = offset.offX.getValue().floatValue();
                 yOffset = offset.offY.getValue().floatValue();
             }
+            
+            if (StackShow.getINSTANCE().isOn() && mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL && hand == EnumHand.OFF_HAND) {
+                yOffset += 0.7 - (mc.player.getHeldItemOffhand().getCount() * 0.0109375);
+            }
+            
             if (HandChams.getINSTANCE().isOn() && hand == EnumHand.MAIN_HAND && stack.isEmpty()) {
                 if (HandChams.getINSTANCE().mode.getValue().equals(HandChams.RenderMode.WIREFRAME)) {
                     this.renderItemInFirstPerson(player, p_187457_2_, p_187457_3_, hand, p_187457_5_ + xOffset, stack, p_187457_7_ + yOffset);
@@ -77,7 +84,7 @@ public abstract class MixinItemRenderer {
             if (SmallShield.getINSTANCE().isOn() && (!stack.isEmpty || HandChams.getINSTANCE().isOff())) {
                 this.renderItemInFirstPerson(player, p_187457_2_, p_187457_3_, hand, p_187457_5_ + xOffset, stack, p_187457_7_ + yOffset);
             } else if (!stack.isEmpty || HandChams.getINSTANCE().isOff()) {
-                this.renderItemInFirstPerson(player, p_187457_2_, p_187457_3_, hand, p_187457_5_, stack, p_187457_7_);
+                this.renderItemInFirstPerson(player, p_187457_2_, p_187457_3_, hand, p_187457_5_ + xOffset, stack, p_187457_7_ + yOffset);
             }
             this.injection = true;
         }

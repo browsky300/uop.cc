@@ -92,6 +92,7 @@ public class ModuleManager
         this.modules.add(new RusherCapes());
         this.modules.add(new Skeleton());
         this.modules.add(new SmallShield());
+        this.modules.add(new StackShow());
         this.modules.add(new Trajectories());
         this.modules.add(new Wireframe());
     }
