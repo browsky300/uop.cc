@@ -37,16 +37,15 @@ public class TextManager
         this.drawString(text, x, y, color, true);
     }
 
-    public void drawString(String text, float x, float y, int color, boolean shadow) {
+    public float drawString(String text, float x, float y, int color, boolean shadow) {
         if (OyVey.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             if (shadow) {
-                this.customFont.drawStringWithShadow(text, x, y, color);
+                return this.customFont.drawStringWithShadow(text, x, y, color);
             } else {
-                this.customFont.drawString(text, x, y, color);
+                return this.customFont.drawString(text, x, y, color);
             }
-            return;
         }
-        TextManager.mc.fontRenderer.drawString(text, x, y, color, shadow);
+        return TextManager.mc.fontRenderer.drawString(text, x, y, color, shadow);
     }
 
     public int getStringWidth(String text) {

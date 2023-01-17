@@ -47,6 +47,7 @@ public class ModuleManager
         this.modules.add(new AntiDesyncC());
         this.modules.add(new CallBackup());
         this.modules.add(new CAMessage());
+        this.modules.add(new CrystalPredict());
         
         // misc
         this.modules.add(new AutoConfig());

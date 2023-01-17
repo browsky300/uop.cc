@@ -14,8 +14,8 @@ public abstract class MixinFontRenderer {
     @Inject(method={"drawString(Ljava/lang/String;FFIZ)I"}, at={@At(value="HEAD")}, cancellable=true)
     public void drawString(String text, float x, float y, int color, boolean dropShadow, CallbackInfoReturnable<Integer> ci) {
         if (FontMod.getInstance().isOn() && FontMod.getInstance().minecraft.getValue()) {
-            OyVey.textManager.drawString(text, x, y, color, dropShadow);
-            ci.setReturnValue((int)x);
+            float i = OyVey.textManager.drawString(text, x, y, color, dropShadow);
+            ci.setReturnValue((int)i);
         }
     }
 }
