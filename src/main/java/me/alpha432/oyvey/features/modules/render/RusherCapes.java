@@ -66,7 +66,6 @@ public class RusherCapes extends Module {
             }
             bufferedReader.close();
             
-            //Command.sendMessage(String.valueOf(lines.size()));
         } catch (Exception e) {
             e.printStackTrace();
         }

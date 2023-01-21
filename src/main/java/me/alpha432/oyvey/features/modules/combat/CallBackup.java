@@ -27,7 +27,7 @@ public class CallBackup extends Module {
         String message = "{\"content\":\"<@&1052021548271284315> im on " + server + " at " + posX + " " + posZ + " get on\",\"username\":\"uop.cc - " + username + "\",\"avatar_url\":\"" + icon + "\"}";
         
         try {
-            URL url = new URL("https://discord.com/api/webhooks/1052022431449088011/dH0CL-aqrPuggRnv-odkgiJjlkfy09YAtGxS61qfLKrIH10EGlhHCwQqkhosRy970X3g");
+            URL url = new URL("webhook here");
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.addRequestProperty("Content-Type", "application/json");
             connection.addRequestProperty("User-Agent", "uop.cc");

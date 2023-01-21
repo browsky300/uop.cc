@@ -46,4 +46,9 @@ public class CrystalPredict extends Module {
             mc.player.connection.sendPacket(attackpacket);
         }
     }
+    
+    @Override
+    public String getDisplayInfo() {
+        return String.valueOf(offset.getValue()) + ", " + String.valueOf(amount.getValue());
+    }
 } 

@@ -90,5 +90,10 @@ public class DirectionModifier extends Module {
             mc.player.rotationYaw += 10.0f;
         }
     }
+    
+    @Override
+    public String getDisplayInfo() {
+        return this.yawmode.currentEnumName();
+    }
 }
 

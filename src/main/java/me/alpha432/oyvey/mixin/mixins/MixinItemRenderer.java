@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import me.alpha432.oyvey.features.modules.render.NoSway;
-import me.alpha432.oyvey.features.modules.render.StackShow;
 import net.minecraft.init.Items;
 
 @Mixin(value = {ItemRenderer.class})
@@ -51,10 +50,6 @@ public abstract class MixinItemRenderer {
             } else if (offset.isOn()) {
                 xOffset = offset.offX.getValue().floatValue();
                 yOffset = offset.offY.getValue().floatValue();
-            }
-            
-            if (StackShow.getINSTANCE().isOn() && mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL && hand == EnumHand.OFF_HAND) {
-                yOffset += 0.7 - (mc.player.getHeldItemOffhand().getCount() * 0.0109375);
             }
             
             if (HandChams.getINSTANCE().isOn() && hand == EnumHand.MAIN_HAND && stack.isEmpty()) {

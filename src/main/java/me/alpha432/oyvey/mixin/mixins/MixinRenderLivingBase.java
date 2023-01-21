@@ -3,6 +3,7 @@ package me.alpha432.oyvey.mixin.mixins;
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
+import me.alpha432.oyvey.features.modules.render.ModelTweaks;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -73,6 +74,11 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                     f2 = f1 - f;
                 }
                 float f7 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
+                
+                if (ModelTweaks.getINSTANCE().isOn()) {
+                    y -= 1.4 - (ModelTweaks.getINSTANCE().psize.getValue() * 1.4);
+                }
+                
                 renderLivingAt(entity, x, y, z);
                 float f8 = handleRotationFloat(entity, partialTicks);
                 applyRotations(entity, f8, f, partialTicks);
@@ -88,6 +94,10 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         f5 = 1.0F;
                     f2 = f1 - f;
                 }
+                if (ModelTweaks.getINSTANCE().isOn()) {
+                    GlStateManager.scale(ModelTweaks.getINSTANCE().psize.getValue(), ModelTweaks.getINSTANCE().psize.getValue(), ModelTweaks.getINSTANCE().psize.getValue());
+                }
+                
                 GlStateManager.enableAlpha();
                 this.mainModel.setLivingAnimations(entity, f6, f5, partialTicks);
                 this.mainModel.setRotationAngles(f6, f5, f8, f2, f7, f4, entity);

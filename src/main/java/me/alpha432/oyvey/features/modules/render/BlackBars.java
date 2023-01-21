@@ -17,6 +17,6 @@ public class BlackBars extends Module {
         float barWidth = width / 8;
         RenderUtil.drawRect(0, 0, barWidth, height + 1, 4278190080L);
         RenderUtil.drawRect(width - barWidth, 0, width, height + 1, 4278190080L);
-        // RenderUtil.drawCircle(1000, 100, 20); // how to obliterate your game in one line of code simple tutorial 2023
+        //RenderUtil.drawCircle(1000, 100, 20); // how to obliterate your game in one line of code simple tutorial 2023
     }
 } 

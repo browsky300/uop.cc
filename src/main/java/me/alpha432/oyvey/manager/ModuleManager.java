@@ -81,19 +81,18 @@ public class ModuleManager
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
         this.modules.add(new CustomSkins());
-        this.modules.add(new CrystalMod());
         this.modules.add(new ESP());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
         this.modules.add(new LeftHand());
+        this.modules.add(new ModelTweaks());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
         this.modules.add(new RusherCapes());
         this.modules.add(new Skeleton());
         this.modules.add(new SmallShield());
-        this.modules.add(new StackShow());
         this.modules.add(new Trajectories());
         this.modules.add(new Wireframe());
     }

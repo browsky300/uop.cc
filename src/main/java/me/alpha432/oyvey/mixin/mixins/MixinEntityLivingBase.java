@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinEntityLivingBase {
     @Inject(method = "getArmSwingAnimationEnd",at = @At(value = "HEAD"), cancellable = true)
     public void getArmSwingAnimationEndHook(CallbackInfoReturnable<Integer> info) {
-        int i = Swing.getINSTANCE().isOn() ? (int) Math.floor(1 / Swing.getINSTANCE().swingspeed.getValue() * 6) : 6;
+        int i = Swing.getINSTANCE().isOn() ? (int) Math.floor(6 / Swing.getINSTANCE().swingspeed.getValue()) : 6;
         info.setReturnValue(i);
     }
 }
