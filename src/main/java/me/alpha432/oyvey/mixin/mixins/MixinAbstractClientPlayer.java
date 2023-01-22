@@ -13,7 +13,7 @@ import me.alpha432.oyvey.features.modules.render.RusherCapes;
 import java.util.UUID;
 import javax.annotation.Nullable;
 import me.alpha432.oyvey.features.command.Command;
-import me.alpha432.oyvey.features.modules.render.CustomSkins;
+import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
 
 @Mixin(value={AbstractClientPlayer.class})
 public abstract class MixinAbstractClientPlayer {
@@ -23,8 +23,8 @@ public abstract class MixinAbstractClientPlayer {
     
     @Inject(method={"getLocationSkin()Lnet/minecraft/util/ResourceLocation;"}, at={@At(value="HEAD")}, cancellable=true)
     public void getLocationSkin(CallbackInfoReturnable<ResourceLocation> ci) {
-        if (CustomSkins.getINSTANCE().isOn()) {
-            switch (CustomSkins.getINSTANCE().skin.getValue()) {
+        if (PlayerTweaks.getINSTANCE().isOn()) {
+            switch (PlayerTweaks.getINSTANCE().skin.getValue()) {
                 case Alex: {
                     ci.setReturnValue(new ResourceLocation("textures/entity/alex.png"));
                     break;
@@ -37,12 +37,18 @@ public abstract class MixinAbstractClientPlayer {
                     ci.setReturnValue(new ResourceLocation("textures/thunderskin.png"));
                     break;
                 }
+                default: {
+                    break;
+                }
             }
         }
     }
 
     @Inject(method={"getLocationCape"}, at={@At(value="HEAD")}, cancellable=true)
     public void getLocationCape(CallbackInfoReturnable<ResourceLocation> ci) {
+        if (PlayerTweaks.getINSTANCE().isOn() && PlayerTweaks.getINSTANCE().nocape.getValue()) {
+            ci.cancel();
+        }
         if (RusherCapes.getINSTANCE().isOn()) {
             NetworkPlayerInfo info = this.getPlayerInfo();
             UUID uuid = null;

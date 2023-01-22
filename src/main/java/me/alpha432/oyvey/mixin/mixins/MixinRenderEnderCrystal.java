@@ -2,7 +2,7 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
-import me.alpha432.oyvey.features.modules.render.ModelTweaks;
+import me.alpha432.oyvey.features.modules.render.CrystalTweaks;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderCrystal;
@@ -46,10 +46,10 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
         float f1 = MathHelper.sin(f * 0.2F) / 2.0F + 0.5F;
         f1 += f1 * f1;
         
-        if (ModelTweaks.getINSTANCE().isOn()) {
-            GlStateManager.scale(ModelTweaks.getINSTANCE().csize.getValue(), ModelTweaks.getINSTANCE().csize.getValue(), ModelTweaks.getINSTANCE().csize.getValue());
-            f *= ModelTweaks.getINSTANCE().cspeed.getValue();
-            f1 *= ModelTweaks.getINSTANCE().coscillate.getValue();
+        if (CrystalTweaks.getINSTANCE().isOn()) {
+            GlStateManager.scale(CrystalTweaks.getINSTANCE().size.getValue(), CrystalTweaks.getINSTANCE().size.getValue(), CrystalTweaks.getINSTANCE().size.getValue());
+            f *= CrystalTweaks.getINSTANCE().speed.getValue();
+            f1 *= CrystalTweaks.getINSTANCE().oscillate.getValue();
         }
         
         if (this.renderOutlines) {

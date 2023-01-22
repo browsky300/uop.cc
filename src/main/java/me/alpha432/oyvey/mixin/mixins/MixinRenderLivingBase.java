@@ -3,7 +3,7 @@ package me.alpha432.oyvey.mixin.mixins;
 import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
-import me.alpha432.oyvey.features.modules.render.ModelTweaks;
+import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -48,7 +48,11 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
 
     @Overwrite
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    
         if (!MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(entity, RenderLivingBase.class.cast(this), partialTicks, x, y, z))) {
+            if (PlayerTweaks.getINSTANCE().isOn() && PlayerTweaks.getINSTANCE().nointerpolate.getValue()) {
+                partialTicks = 0;
+            }
             GlStateManager.pushMatrix();
             GlStateManager.disableCull();
             this.mainModel.swingProgress = getSwingProgress(entity, partialTicks);
@@ -75,8 +79,8 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                 }
                 float f7 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
                 
-                if (ModelTweaks.getINSTANCE().isOn()) {
-                    y -= 1.4 - (ModelTweaks.getINSTANCE().psize.getValue() * 1.4);
+                if (PlayerTweaks.getINSTANCE().isOn()) {
+                    y -= 1.4 - (PlayerTweaks.getINSTANCE().size.getValue() * 1.4);
                 }
                 
                 renderLivingAt(entity, x, y, z);
@@ -94,8 +98,8 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         f5 = 1.0F;
                     f2 = f1 - f;
                 }
-                if (ModelTweaks.getINSTANCE().isOn()) {
-                    GlStateManager.scale(ModelTweaks.getINSTANCE().psize.getValue(), ModelTweaks.getINSTANCE().psize.getValue(), ModelTweaks.getINSTANCE().psize.getValue());
+                if (PlayerTweaks.getINSTANCE().isOn()) {
+                    GlStateManager.scale(PlayerTweaks.getINSTANCE().size.getValue(), PlayerTweaks.getINSTANCE().size.getValue(), PlayerTweaks.getINSTANCE().size.getValue());
                 }
                 
                 GlStateManager.enableAlpha();

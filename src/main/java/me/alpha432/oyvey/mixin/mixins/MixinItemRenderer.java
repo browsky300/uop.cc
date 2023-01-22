@@ -3,6 +3,7 @@ package me.alpha432.oyvey.mixin.mixins;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.HandChams;
 import me.alpha432.oyvey.features.modules.render.SmallShield;
+import me.alpha432.oyvey.features.modules.render.FutureVM;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -42,6 +43,19 @@ public abstract class MixinItemRenderer {
             float xOffset = 0.0f;
             float yOffset = 0.0f;
             this.injection = false;
+            int vmFactor = 1;
+            if (FutureVM.getINSTANCE().isOn()) { // this is really stupid and very dumb but it works and i cba to learn how to properly do gl so ¯\_(ツ)_/¯
+                if (hand == EnumHand.MAIN_HAND) {
+                    GlStateManager.scale(FutureVM.getINSTANCE().ScaleX.getValue(), FutureVM.getINSTANCE().ScaleY.getValue(), FutureVM.getINSTANCE().ScaleZ.getValue());
+                    GlStateManager.rotate(FutureVM.getINSTANCE().RotateX.getValue() + 180.0f, 1.0f, 0.0f, 0.0f);
+                    GlStateManager.rotate(FutureVM.getINSTANCE().RotateY.getValue() + 180.0f, 0.0f, 1.0f, 0.0f);
+                    GlStateManager.rotate(FutureVM.getINSTANCE().RotateZ.getValue() + 180.0f, 0.0f, 0.0f, 1.0f);
+                    GlStateManager.translate(FutureVM.getINSTANCE().TranslateX.getValue() * (1 / FutureVM.getINSTANCE().ScaleX.getValue()) * -1, FutureVM.getINSTANCE().TranslateY.getValue() * (1 / FutureVM.getINSTANCE().ScaleY.getValue()), FutureVM.getINSTANCE().TranslateZ.getValue() * (1 / FutureVM.getINSTANCE().ScaleZ.getValue()));
+                } else {
+                    GlStateManager.translate(FutureVM.getINSTANCE().TranslateX.getValue() * (1 / FutureVM.getINSTANCE().ScaleX.getValue()) * 2, 0, 0);
+                }
+            }
+            
             if (hand == EnumHand.MAIN_HAND) {
                 if (offset.isOn()) {
                     xOffset = offset.mainX.getValue().floatValue();

@@ -65,4 +65,4 @@ public class Radar extends Module {
         RenderUtil.drawRect(x + 101, y + 101, x + 1, y + 100, ColorUtil.toRGBA(64, 64, 64, 255));
         
     }
-} 
+}

@@ -15,6 +15,7 @@
     "MixinGuiPlayerTabOverlay",
     "MixinGuiScreen",
     "MixinItemRenderer",
+    "MixinLayerArmorBase",
     "MixinMinecraft",
     "MixinModelPlayer",
     "MixinNetworkManager",

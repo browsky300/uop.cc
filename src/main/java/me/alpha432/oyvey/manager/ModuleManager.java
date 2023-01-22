@@ -40,14 +40,17 @@ public class ModuleManager
         this.modules.add(new ClickGui());
         this.modules.add(new Dashboard());
         this.modules.add(new FontMod());
+        this.modules.add(new Friends());
         this.modules.add(new HUD());
         this.modules.add(new Radar());
         
         // combat
         this.modules.add(new AntiDesyncC());
+        this.modules.add(new AutoTrap());
         this.modules.add(new CallBackup());
         this.modules.add(new CAMessage());
         this.modules.add(new CrystalPredict());
+        this.modules.add(new Selftrap());
         
         // misc
         this.modules.add(new AutoConfig());
@@ -80,16 +83,18 @@ public class ModuleManager
         this.modules.add(new BlackBars());
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
-        this.modules.add(new CustomSkins());
+        this.modules.add(new CrystalTweaks());
+        this.modules.add(new EnchantColor());
         this.modules.add(new ESP());
+        this.modules.add(new FutureVM());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
         this.modules.add(new LeftHand());
-        this.modules.add(new ModelTweaks());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
+        this.modules.add(new PlayerTweaks());
         this.modules.add(new RusherCapes());
         this.modules.add(new Skeleton());
         this.modules.add(new SmallShield());
