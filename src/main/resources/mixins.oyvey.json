@@ -11,6 +11,7 @@
     "MixinEntityPlayerSP",
     "MixinEntityRenderer",
     "MixinFontRenderer",
+    "MixinGuiMainMenu",
     "MixinGuiNewChat",
     "MixinGuiPlayerTabOverlay",
     "MixinGuiScreen",

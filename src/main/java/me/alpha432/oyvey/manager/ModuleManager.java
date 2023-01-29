@@ -40,8 +40,8 @@ public class ModuleManager
         this.modules.add(new ClickGui());
         this.modules.add(new Dashboard());
         this.modules.add(new FontMod());
-        this.modules.add(new Friends());
         this.modules.add(new HUD());
+        this.modules.add(new MainMenu());
         this.modules.add(new Radar());
         
         // combat
@@ -72,7 +72,6 @@ public class ModuleManager
         
         // player
         this.modules.add(new ChestSwap());
-        this.modules.add(new DirectionModifier());
         this.modules.add(new Instamine());
         this.modules.add(new MCP());
         this.modules.add(new MultiTask());
@@ -83,15 +82,18 @@ public class ModuleManager
         this.modules.add(new BlackBars());
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
+        this.modules.add(new CCSwing());
         this.modules.add(new CrystalTweaks());
         this.modules.add(new EnchantColor());
         this.modules.add(new ESP());
         this.modules.add(new FutureVM());
+        this.modules.add(new GlitchedDeath());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
         this.modules.add(new LeftHand());
+        this.modules.add(new NoBackground());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
         this.modules.add(new PlayerTweaks());

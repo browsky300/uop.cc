@@ -25,11 +25,11 @@ public class PlayerTweaks extends Module {
     
     public void onTick() {
         for (EntityPlayer player : mc.world.playerEntities) {
-            if (nolimbmove.getValue()) {
+            /*if (nolimbmove.getValue()) {
                 player.limbSwing = 0;
                 player.limbSwingAmount = 0;
                 player.prevLimbSwingAmount = 0;
-            }
+            }*/
             if (sneak.getValue()) {
                 player.setSneaking(true);
             }

@@ -381,11 +381,12 @@ public class HUD extends Module {
             String s = (is.getCount() > 1) ? (is.getCount() + "") : "";
             this.renderer.drawStringWithShadow(s, (x + 19 - 2 - this.renderer.getStringWidth(s)), (y + 9), 16777215);
             if (percent) {
-                float green = (is.getMaxDamage() - is.getItemDamage()) / is.getMaxDamage();
+                float green = (is.getMaxDamage() - (float)is.getItemDamage()) / is.getMaxDamage();
                 float red = 1.0F - green;
                 int dmg = 100 - (int) (red * 100.0F);
                 this.renderer.drawStringWithShadow(dmg + "", (x + 8 - this.renderer.getStringWidth(dmg + "") / 2), (y - 11), ColorUtil.toRGBA((int) (red * 255.0F), (int) (green * 255.0F), 0));
             }
+                
         }
         GlStateManager.enableDepth();
         GlStateManager.disableLighting();

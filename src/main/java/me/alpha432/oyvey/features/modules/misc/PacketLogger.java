@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PacketLogger extends Module {
     public Setting<Boolean> incoming = this.register(new Setting<Boolean>("Incoming", Boolean.valueOf(false), "s packets"));
-    public Setting<Boolean> outcoming = this.register(new Setting<Boolean>("Outgoing", Boolean.valueOf(false), "c packets"));
+    public Setting<Boolean> outgoing = this.register(new Setting<Boolean>("Outgoing", Boolean.valueOf(false), "c packets"));
 
     public PacketLogger() {
         super("PacketLogger", "prints packets in chat", Category.MISC, true, false, false);
@@ -16,7 +16,7 @@ public class PacketLogger extends Module {
     
     @SubscribeEvent
     public void onPacketSend(PacketEvent.Send event) {
-        if (outcoming.getValue()) Command.sendSilentMessage("⇧ " + event.getPacket().getClass().getSimpleName());
+        if (outgoing.getValue()) Command.sendSilentMessage("⇧ " + event.getPacket().getClass().getSimpleName());
     }
     
     @SubscribeEvent

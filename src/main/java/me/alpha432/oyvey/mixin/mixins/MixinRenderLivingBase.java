@@ -4,7 +4,9 @@ import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
+import me.alpha432.oyvey.features.modules.render.GlitchedDeath;
 import me.alpha432.oyvey.util.ColorUtil;
+import me.alpha432.oyvey.util.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -48,11 +50,14 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
 
     @Overwrite
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-    
         if (!MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(entity, RenderLivingBase.class.cast(this), partialTicks, x, y, z))) {
             if (PlayerTweaks.getINSTANCE().isOn() && PlayerTweaks.getINSTANCE().nointerpolate.getValue()) {
                 partialTicks = 0;
+                x = entity.lastTickPosX - Util.mc.getRenderManager().viewerPosX;
+                y = entity.lastTickPosY - Util.mc.getRenderManager().viewerPosY;
+                z = entity.lastTickPosZ - Util.mc.getRenderManager().viewerPosZ;
             }
+            
             GlStateManager.pushMatrix();
             GlStateManager.disableCull();
             this.mainModel.swingProgress = getSwingProgress(entity, partialTicks);
@@ -85,7 +90,11 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                 
                 renderLivingAt(entity, x, y, z);
                 float f8 = handleRotationFloat(entity, partialTicks);
-                applyRotations(entity, f8, f, partialTicks);
+                if (GlitchedDeath.getINSTANCE().isOn() && entity.deathTime > 0) {
+                    GlStateManager.rotate((float) Math.random() * 10 + 40, 0.0F, 1.0F, 1.0F);
+                } else {
+                    applyRotations(entity, f8, f, partialTicks);
+                }
                 float f4 = prepareScale(entity, partialTicks);
                 float f5 = 0.0F;
                 float f6 = 0.0F;
@@ -98,6 +107,11 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                         f5 = 1.0F;
                     f2 = f1 - f;
                 }
+                
+                if (PlayerTweaks.getINSTANCE().isOn() && PlayerTweaks.getINSTANCE().nolimbmove.getValue()) {
+                    f5 = 0;
+                }
+                
                 if (PlayerTweaks.getINSTANCE().isOn()) {
                     GlStateManager.scale(PlayerTweaks.getINSTANCE().size.getValue(), PlayerTweaks.getINSTANCE().size.getValue(), PlayerTweaks.getINSTANCE().size.getValue());
                 }

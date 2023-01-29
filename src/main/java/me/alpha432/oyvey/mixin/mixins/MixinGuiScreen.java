@@ -1,6 +1,7 @@
 package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.misc.ToolTips;
+import me.alpha432.oyvey.features.modules.render.NoBackground;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemShulkerBox;
@@ -17,6 +18,13 @@ public class MixinGuiScreen
     public void renderToolTipHook(ItemStack stack, int x, int y, CallbackInfo info) {
         if (ToolTips.getInstance().isOn() && stack.getItem() instanceof ItemShulkerBox) {
             ToolTips.getInstance().renderShulkerToolTip(stack, x, y, null);
+            info.cancel();
+        }
+    }
+    
+    @Inject(method = {"drawDefaultBackground"}, at = {@At(value = "HEAD")}, cancellable = true)
+    public void drawDefaultBackgroundHook(CallbackInfo info) {
+        if (NoBackground.getINSTANCE().isOn()) {
             info.cancel();
         }
     }
