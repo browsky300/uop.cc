@@ -17,8 +17,8 @@ import java.awt.Color;
 
 public class Radar extends Module {
     
-    public Setting<Integer> posX = register(new Setting("X", 2, 0, 2000));
-    public Setting<Integer> posY = register(new Setting("Y", 15, 0, 2000));
+    public Setting<Integer> posX = register(new Setting("X", 2, 0, 500));
+    public Setting<Integer> posY = register(new Setting("Y", 2, 0, 1000));
     
     public Radar() {
         super("Radar", "big awesome", Category.CLIENT, true, false, false);

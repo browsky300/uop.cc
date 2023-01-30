@@ -2,9 +2,6 @@ package me.alpha432.oyvey.features.modules.render;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import me.alpha432.oyvey.event.events.ClientEvent;
 
 public class PlayerTweaks extends Module {
     private static PlayerTweaks INSTANCE = new PlayerTweaks();
@@ -23,35 +20,6 @@ public class PlayerTweaks extends Module {
         this.setInstance();
     }
     
-    public void onTick() {
-        for (EntityPlayer player : mc.world.playerEntities) {
-            /*if (nolimbmove.getValue()) {
-                player.limbSwing = 0;
-                player.limbSwingAmount = 0;
-                player.prevLimbSwingAmount = 0;
-            }*/
-            if (sneak.getValue()) {
-                player.setSneaking(true);
-            }
-        }
-    }
-    
-    public void onDisable() {
-        for (EntityPlayer player : mc.world.playerEntities) {
-            player.setSneaking(false);
-        }
-    }
-    
-    @SubscribeEvent
-    public void onSettingChange(ClientEvent event) {
-        if (event.getStage() == 2 && event.getSetting().getFeature().equals(this) && event.getSetting().equals(this.sneak) && !sneak.getValue()) {
-            for (EntityPlayer player : mc.world.playerEntities) {
-                player.setSneaking(false);
-            }
-        }
-    }
-    
-
     public static PlayerTweaks getINSTANCE() {
         if (INSTANCE == null) {
             INSTANCE = new PlayerTweaks();

@@ -84,10 +84,10 @@ public class ModuleManager
         this.modules.add(new BurrowESP());
         this.modules.add(new CCSwing());
         this.modules.add(new CrystalTweaks());
+        this.modules.add(new DeathAnimation());
         this.modules.add(new EnchantColor());
         this.modules.add(new ESP());
         this.modules.add(new FutureVM());
-        this.modules.add(new GlitchedDeath());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
@@ -99,7 +99,9 @@ public class ModuleManager
         this.modules.add(new PlayerTweaks());
         this.modules.add(new RusherCapes());
         this.modules.add(new Skeleton());
+        this.modules.add(new SkyColor());
         this.modules.add(new SmallShield());
+        this.modules.add(new TimeSet());
         this.modules.add(new Trajectories());
         this.modules.add(new Wireframe());
     }

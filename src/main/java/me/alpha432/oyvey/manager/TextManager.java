@@ -102,24 +102,5 @@ public class TextManager
         }
         return "";
     }
-    
-    public void drawSyncedString(String text, float x, float y, int color) {
-        if ((ClickGui.getInstance()).rainbow.getValue().booleanValue()) {
-            if ((ClickGui.getInstance()).rainbowModeHud.getValue() == ClickGui.rainbowMode.Static) {
-                this.renderer.drawString(text, x, y, ColorUtil.rainbow((ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB(), true);
-            } else {
-                int[] arrayOfInt = {1};
-                char[] stringToCharArray = text.toCharArray();
-                float f = 0.0F;
-                for (char c : stringToCharArray) {
-                    this.renderer.drawString(String.valueOf(c), x, y, ColorUtil.rainbow(arrayOfInt[0] * (ClickGui.getInstance()).rainbowHue.getValue().intValue()).getRGB(), true);
-                    f += this.renderer.getStringWidth(String.valueOf(c));
-                    arrayOfInt[0] = arrayOfInt[0] + 1;
-                }
-            }
-        } else {
-            this.renderer.drawString(text, x, y, color, true);
-        }
-    }
 }
 

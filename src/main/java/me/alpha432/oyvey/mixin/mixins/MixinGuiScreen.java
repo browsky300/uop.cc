@@ -2,6 +2,7 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.misc.ToolTips;
 import me.alpha432.oyvey.features.modules.render.NoBackground;
+import me.alpha432.oyvey.util.Util;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemShulkerBox;
@@ -24,7 +25,7 @@ public class MixinGuiScreen
     
     @Inject(method = {"drawDefaultBackground"}, at = {@At(value = "HEAD")}, cancellable = true)
     public void drawDefaultBackgroundHook(CallbackInfo info) {
-        if (NoBackground.getINSTANCE().isOn()) {
+        if (NoBackground.getINSTANCE().isOn() && Util.mc.world != null) {
             info.cancel();
         }
     }

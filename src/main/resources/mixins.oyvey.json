@@ -6,6 +6,7 @@
   "mixins": [
     "MixinAbstractClientPlayer",
     "MixinBlockLiquid",
+    "MixinEntity",
     "MixinEntityLivingBase",
     "MixinEntityPlayer",
     "MixinEntityPlayerSP",
