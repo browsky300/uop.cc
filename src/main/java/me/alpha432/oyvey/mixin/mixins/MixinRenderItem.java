@@ -18,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import me.alpha432.oyvey.features.modules.render.ItemScale;
 import me.alpha432.oyvey.features.modules.render.GlintTweaks;
-import me.alpha432.oyvey.features.modules.render.Alpha;
 import java.awt.Color;
 
 
