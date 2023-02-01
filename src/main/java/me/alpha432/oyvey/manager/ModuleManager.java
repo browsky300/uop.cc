@@ -57,10 +57,10 @@ public class ModuleManager
         this.modules.add(new AutoJewbase());
         this.modules.add(new BuildHeight());
         this.modules.add(new ChatModifier());
+        this.modules.add(new CustomTime());
         this.modules.add(new ExtraTab());
         this.modules.add(new FakeDuelMessage());
         this.modules.add(new GoodLuckCharm());
-        this.modules.add(new NoTrace());
         this.modules.add(new PacketLogger());
         this.modules.add(new PopCounter());
         this.modules.add(new ToolTips());
@@ -73,26 +73,31 @@ public class ModuleManager
         // player
         this.modules.add(new ChestSwap());
         this.modules.add(new Instamine());
+        this.modules.add(new LeftHand());
         this.modules.add(new MCP());
         this.modules.add(new MultiTask());
+        this.modules.add(new NoTrace());
+        this.modules.add(new Speedmine());
         this.modules.add(new Swing());
         
         // render
+        this.modules.add(new AA());
+        this.modules.add(new Alpha());
         this.modules.add(new ArrowESP());
+        this.modules.add(new AspectRatio());
         this.modules.add(new BlackBars());
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
         this.modules.add(new CCSwing());
         this.modules.add(new CrystalTweaks());
         this.modules.add(new DeathAnimation());
-        this.modules.add(new EnchantColor());
         this.modules.add(new ESP());
         this.modules.add(new FutureVM());
+        this.modules.add(new GlintTweaks());
         this.modules.add(new HandChams());
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
-        this.modules.add(new LeftHand());
         this.modules.add(new NoBackground());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
@@ -101,7 +106,6 @@ public class ModuleManager
         this.modules.add(new Skeleton());
         this.modules.add(new SkyColor());
         this.modules.add(new SmallShield());
-        this.modules.add(new TimeSet());
         this.modules.add(new Trajectories());
         this.modules.add(new Wireframe());
     }

@@ -23,5 +23,10 @@ public class CCSwing extends Module {
     private void setInstance() {
         INSTANCE = this;
     }
+    
+    @Override
+    public String getDisplayInfo() {
+        return String.valueOf(progress.getValue());
+    }
 }
 

@@ -69,5 +69,11 @@ public class FontMod
             this.reloadFont = false;
         }
     }
+    
+    
+    @Override
+    public String getDisplayInfo() {
+        return fontName.getValue();
+    }
 }
 

@@ -5,6 +5,7 @@ import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
 import me.alpha432.oyvey.features.modules.render.DeathAnimation;
+import me.alpha432.oyvey.features.modules.render.AA;
 import me.alpha432.oyvey.util.ColorUtil;
 import me.alpha432.oyvey.util.Util;
 import net.minecraft.client.Minecraft;
@@ -59,6 +60,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                 z = entity.lastTickPosZ - Util.mc.getRenderManager().viewerPosZ;
             }
             
+            
             GlStateManager.pushMatrix();
             GlStateManager.disableCull();
             this.mainModel.swingProgress = getSwingProgress(entity, partialTicks);
@@ -105,6 +107,13 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                     }
                 } else {
                     applyRotations(entity, f8, f, partialTicks);
+                }
+                
+                
+                if (AA.getINSTANCE().isOn() && entity == Util.mc.player) {
+                    if ((!entity.isSneaking() && AA.getINSTANCE().standing.getValue()) || (entity.isSneaking() && AA.getINSTANCE().sneaking.getValue())) {
+                        GlStateManager.rotate(AA.getINSTANCE().finalOffset, 0.0F, 1.0F, 0.0F);
+                    }
                 }
                 
                 float f4 = prepareScale(entity, partialTicks);

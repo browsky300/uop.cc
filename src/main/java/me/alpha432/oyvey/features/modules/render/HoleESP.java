@@ -33,6 +33,7 @@ public class HoleESP
     private final Setting<Integer> Ored = this.register(new Setting<Integer>("ObbyRed", 255, 0, 255));
     private final Setting<Integer> Ogreen = this.register(new Setting<Integer>("ObbyGreen", 0, 0, 255));
     private final Setting<Integer> Oblue = this.register(new Setting<Integer>("ObbyBlue", 0, 0, 255));
+    public int count = 0;
     
     public HoleESP() {
         super("HoleESP", "browsky hole esp attempt :D", Module.Category.RENDER, false, false, false);
@@ -40,6 +41,7 @@ public class HoleESP
     
     @Override
     public void onRender3D(Render3DEvent event) {
+        count = 0;
         assert (HoleESP.mc.renderViewEntity != null);
         Vec3i playerPos = new Vec3i(HoleESP.mc.renderViewEntity.posX, HoleESP.mc.renderViewEntity.posY, HoleESP.mc.renderViewEntity.posZ);
         for (int x = playerPos.getX() - this.range.getValue(); x < playerPos.getX() + this.range.getValue(); ++x) {
@@ -61,7 +63,7 @@ public class HoleESP
     }
     
     public void drawHole(boolean isHoleSafe, BlockPos pos) {
-        
+        count++;
         double x1 = pos.getX();
         double y1 = pos.getY();
         double z1 = pos.getZ();
@@ -166,6 +168,11 @@ public class HoleESP
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
+    }
+    
+    @Override
+    public String getDisplayInfo() {
+        return String.valueOf(count);
     }
 }
 

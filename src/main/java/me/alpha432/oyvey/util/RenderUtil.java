@@ -345,6 +345,34 @@ public class RenderUtil
         GlStateManager.enableTexture2D();
         GlStateManager.disableBlend();
     }
+    
+    public static void drawGradientRect(float x, float y, float w, float h, long color, long color2) {
+        float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
+        float red = (float) (color >> 16 & 0xFF) / 255.0f;
+        float green = (float) (color >> 8 & 0xFF) / 255.0f;
+        float blue = (float) (color & 0xFF) / 255.0f;
+        float alpha2 = (float) (color2 >> 24 & 0xFF) / 255.0f;
+        float red2 = (float) (color2 >> 16 & 0xFF) / 255.0f;
+        float green2 = (float) (color2 >> 8 & 0xFF) / 255.0f;
+        float blue2 = (float) (color2 & 0xFF) / 255.0f;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableAlpha();
+        GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+        GlStateManager.shadeModel(7425);
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        bufferbuilder.pos(x, h, 0.0).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.pos(w, h, 0.0).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.pos(w, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+        bufferbuilder.pos(x, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+        tessellator.draw();
+        GlStateManager.shadeModel(7424);
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
 
     public static void drawColorBox(AxisAlignedBB axisalignedbb, float red, float green, float blue, float alpha) {
         Tessellator ts = Tessellator.getInstance();

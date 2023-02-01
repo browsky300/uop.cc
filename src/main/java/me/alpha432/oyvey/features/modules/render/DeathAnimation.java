@@ -23,5 +23,10 @@ public class DeathAnimation extends Module {
     private void setInstance() {
         INSTANCE = this;
     }
+    
+    @Override
+    public String getDisplayInfo() {
+        return deathmode.currentEnumName();
+    }
 }
 

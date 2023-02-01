@@ -17,19 +17,12 @@ public class RoadManOvaMod extends Module {
     }
 
     @SubscribeEvent
-    public void onSettingChange(ClientEvent event) {
-        if (event.getStage() == 2) {
-            RoadManOvaMod.mc.player.motionY = -0.1;
-        }
-    }
-
-    @SubscribeEvent
     public void onMode(MoveEvent event) {
-        if (!(event.getStage() != 0 || RoadManOvaMod.nullCheck() || RoadManOvaMod.mc.player.isSneaking() || RoadManOvaMod.mc.player.isInWater() || RoadManOvaMod.mc.player.isInLava() || RoadManOvaMod.mc.player.movementInput.moveForward == 0.0f && RoadManOvaMod.mc.player.movementInput.moveStrafe == 0.0f)) {
-            MovementInput movementInput = RoadManOvaMod.mc.player.movementInput;
+        if (!(event.getStage() != 0 || mc.player.isSneaking() || mc.player.isInWater() || mc.player.isInLava() || mc.player.movementInput.moveForward == 0.0f && mc.player.movementInput.moveStrafe == 0.0f)) {
+            MovementInput movementInput = mc.player.movementInput;
             float moveForward = movementInput.moveForward;
             float moveStrafe = movementInput.moveStrafe;
-            float rotationYaw = RoadManOvaMod.mc.player.rotationYaw;
+            float rotationYaw = mc.player.rotationYaw;
             if ((double) moveForward == 0.0 && (double) moveStrafe == 0.0) {
                 event.setX(0.0);
                 event.setZ(0.0);

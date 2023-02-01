@@ -116,5 +116,11 @@ public class Instamine extends Module {
         Block block = blockState.getBlock();
         return block.getBlockHardness(blockState, Instamine.mc.world, pos) != -1.0f;
     }
+    
+    
+    @Override
+    public String getDisplayInfo() {
+        return String.valueOf(delay.getValue());
+    }
 }
 

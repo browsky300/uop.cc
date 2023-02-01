@@ -21,13 +21,17 @@ import org.lwjgl.util.glu.Cylinder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 public class Trajectories extends Module {
+    String hitInfo = "";
     public Trajectories() {
         super("Trajectories", "Draws trajectories.", Category.RENDER, false, false, false);
     }
 
     @Override
     public void onRender3D(final Render3DEvent event) {
+        hitInfo = ChatFormatting.RED + "Miss";
         if (Trajectories.mc.world != null && Trajectories.mc.player != null && Trajectories.mc.getRenderManager() != null) {
             final double renderPosX = Trajectories.mc.player.lastTickPosX + (Trajectories.mc.player.posX - Trajectories.mc.player.lastTickPosX) * event.getPartialTicks();
             final double renderPosY = Trajectories.mc.player.lastTickPosY + (Trajectories.mc.player.posY - Trajectories.mc.player.lastTickPosY) * event.getPartialTicks();
@@ -89,6 +93,7 @@ public class Trajectories extends Module {
                     }
                     if (landingOnEntity != null) {
                         GlStateManager.color(1.0f, 0.0f, 0.0f, 1.0f);
+                        hitInfo = ChatFormatting.GREEN + "Hit";
                     }
                     posX += motionX;
                     posY += motionY;
@@ -175,5 +180,11 @@ public class Trajectories extends Module {
             }
         }
         return list;
+    }
+    
+    
+    @Override
+    public String getDisplayInfo() {
+        return hitInfo;
     }
 }
