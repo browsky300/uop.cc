@@ -82,7 +82,6 @@ public class ModuleManager
         
         // render
         this.modules.add(new AA());
-        this.modules.add(new Alpha());
         this.modules.add(new ArrowESP());
         this.modules.add(new AspectRatio());
         this.modules.add(new BlackBars());

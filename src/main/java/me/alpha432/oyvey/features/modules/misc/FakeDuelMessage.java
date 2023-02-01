@@ -10,7 +10,7 @@ public class FakeDuelMessage extends Module {
     public Setting<String> LoserName = register(new Setting("LoserName", "Catuquei"));
 
     public FakeDuelMessage() {
-        super("FakeDuelMessage", "Prints a fake duel message", Category.MISC, true, false, false);
+        super("FakeDuelMsg", "Prints a fake duel message", Category.MISC, true, false, false);
     }
 
     @Override
