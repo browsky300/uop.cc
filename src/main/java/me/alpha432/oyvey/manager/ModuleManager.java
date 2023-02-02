@@ -46,6 +46,7 @@ public class ModuleManager
         
         // combat
         this.modules.add(new AntiDesyncC());
+        this.modules.add(new AntiInvis());
         this.modules.add(new AutoTrap());
         this.modules.add(new CallBackup());
         this.modules.add(new CAMessage());
@@ -67,8 +68,8 @@ public class ModuleManager
         this.modules.add(new XormiosModule());
         
         // movement
+        this.modules.add(new InstantSpeed());
         this.modules.add(new LagBack());
-        this.modules.add(new RoadManOvaMod());
         
         // player
         this.modules.add(new ChestSwap());

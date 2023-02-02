@@ -10,10 +10,10 @@ import me.alpha432.oyvey.util.MathUtil;
 import net.minecraft.util.MovementInput;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class RoadManOvaMod extends Module {
+public class InstantSpeed extends Module {
 
-    public RoadManOvaMod() {
-        super("RoadManOvaMod", "Makes you faster", Module.Category.MOVEMENT, true, false, false);
+    public InstantSpeed() {
+        super("InstantSpeed", "Makes you faster", Module.Category.MOVEMENT, true, false, false);
     }
 
     @SubscribeEvent
