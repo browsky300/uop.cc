@@ -68,8 +68,12 @@ public class ModuleManager
         this.modules.add(new XormiosModule());
         
         // movement
+        this.modules.add(new HorizonBhop());
         this.modules.add(new InstantSpeed());
         this.modules.add(new LagBack());
+        this.modules.add(new NoClip());
+        this.modules.add(new ReverseStep());
+        this.modules.add(new WebSpeed());
         
         // player
         this.modules.add(new ChestSwap());
@@ -78,7 +82,6 @@ public class ModuleManager
         this.modules.add(new MCP());
         this.modules.add(new MultiTask());
         this.modules.add(new NoTrace());
-        this.modules.add(new Speedmine());
         this.modules.add(new Swing());
         
         // render
@@ -90,7 +93,7 @@ public class ModuleManager
         this.modules.add(new BurrowESP());
         this.modules.add(new CCSwing());
         this.modules.add(new CrystalTweaks());
-        this.modules.add(new DeathAnimation());
+        this.modules.add(new DeathEffects());
         this.modules.add(new ESP());
         this.modules.add(new FutureVM());
         this.modules.add(new GlintTweaks());

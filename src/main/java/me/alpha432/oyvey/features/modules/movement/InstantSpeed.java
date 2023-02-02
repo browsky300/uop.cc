@@ -1,23 +1,22 @@
 package me.alpha432.oyvey.features.modules.movement;
 
-import me.alpha432.oyvey.OyVey;
-import me.alpha432.oyvey.event.events.ClientEvent;
-import me.alpha432.oyvey.event.events.MoveEvent;
-import me.alpha432.oyvey.event.events.UpdateWalkingPlayerEvent;
 import me.alpha432.oyvey.features.modules.Module;
+import me.alpha432.oyvey.features.setting.Setting;
+import me.alpha432.oyvey.event.events.MoveEvent;
 import me.alpha432.oyvey.util.EntityUtil;
-import me.alpha432.oyvey.util.MathUtil;
 import net.minecraft.util.MovementInput;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class InstantSpeed extends Module {
+    public final Setting<Boolean> noBedrock = this.register(new Setting<Boolean>("NoBedrock", false));
 
     public InstantSpeed() {
         super("InstantSpeed", "Makes you faster", Module.Category.MOVEMENT, true, false, false);
     }
 
     @SubscribeEvent
-    public void onMode(MoveEvent event) {
+    public void onMoveEvent(MoveEvent event) {
+        if (mc.player.posY < 7 && noBedrock.getValue()) return;
         if (!(event.getStage() != 0 || mc.player.isSneaking() || mc.player.isInWater() || mc.player.isInLava() || mc.player.movementInput.moveForward == 0.0f && mc.player.movementInput.moveStrafe == 0.0f)) {
             MovementInput movementInput = mc.player.movementInput;
             float moveForward = movementInput.moveForward;

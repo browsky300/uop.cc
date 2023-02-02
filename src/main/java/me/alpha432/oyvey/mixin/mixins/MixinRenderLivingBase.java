@@ -4,7 +4,7 @@ import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
-import me.alpha432.oyvey.features.modules.render.DeathAnimation;
+import me.alpha432.oyvey.features.modules.render.DeathEffects;
 import me.alpha432.oyvey.features.modules.render.AA;
 import me.alpha432.oyvey.util.ColorUtil;
 import me.alpha432.oyvey.util.Util;
@@ -94,14 +94,18 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                 renderLivingAt(entity, x, y, z);
                 float f8 = handleRotationFloat(entity, partialTicks);
                 
-                if (DeathAnimation.getINSTANCE().isOn() && entity.deathTime > 0) {
-                    switch (DeathAnimation.getINSTANCE().deathmode.getValue()) {
+                if (DeathEffects.getINSTANCE().isOn() && entity.deathTime > 0) {
+                    switch (DeathEffects.getINSTANCE().deathmode.getValue()) {
                         case Glitchy: {
                             GlStateManager.rotate((float) Math.random() * 10 + 40, 0.0F, 1.0F, 1.0F);
                             break;
                         }
                         case Heaven: {
                             GlStateManager.translate(0.0F, (entity.deathTime + partialTicks) * 0.2f, 0.0F);
+                            break;
+                        }
+                        default: {
+                            applyRotations(entity, f8, f, partialTicks);
                             break;
                         }
                     }

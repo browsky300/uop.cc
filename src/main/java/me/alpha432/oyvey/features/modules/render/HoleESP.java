@@ -21,7 +21,7 @@ import java.awt.*;
 
 public class HoleESP
         extends Module {
-    private final Setting<Integer> range = this.register(new Setting<Integer>("Range", 10, 0, 50));
+    private final Setting<Integer> range = this.register(new Setting<Integer>("Range", 10, 0, 25));
     private final Setting<Float> height = this.register(new Setting<Float>("Height", Float.valueOf(0.0f), Float.valueOf(-1.0f), Float.valueOf(1.0f)));
     private final Setting<Integer> alpha = this.register(new Setting<Integer>("Alpha", 128, 0, 255));
     private final Setting<Integer> lineAlpha = this.register(new Setting<Integer>("LineAlpha", 255, 0, 255));
@@ -42,19 +42,19 @@ public class HoleESP
     @Override
     public void onRender3D(Render3DEvent event) {
         count = 0;
-        assert (HoleESP.mc.renderViewEntity != null);
-        Vec3i playerPos = new Vec3i(HoleESP.mc.renderViewEntity.posX, HoleESP.mc.renderViewEntity.posY, HoleESP.mc.renderViewEntity.posZ);
+        assert (mc.renderViewEntity != null);
+        Vec3i playerPos = new Vec3i(mc.renderViewEntity.posX, mc.renderViewEntity.posY, mc.renderViewEntity.posZ);
         for (int x = playerPos.getX() - this.range.getValue(); x < playerPos.getX() + this.range.getValue(); ++x) {
             for (int z = playerPos.getZ() - this.range.getValue(); z < playerPos.getZ() + this.range.getValue(); ++z) {
                 for (int y = playerPos.getY() + this.range.getValue(); y > playerPos.getY() - this.range.getValue(); --y) {
                     BlockPos pos = new BlockPos(x, y, z);
-                    if (!HoleESP.mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR) || !HoleESP.mc.world.getBlockState(pos.add(0, 1, 0)).getBlock().equals(Blocks.AIR) || !HoleESP.mc.world.getBlockState(pos.add(0, 2, 0)).getBlock().equals(Blocks.AIR))
+                    if (!mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR) || !mc.world.getBlockState(pos.add(0, 1, 0)).getBlock().equals(Blocks.AIR) || !mc.world.getBlockState(pos.add(0, 2, 0)).getBlock().equals(Blocks.AIR))
                         continue;
-                    if (HoleESP.mc.world.getBlockState(pos.north()).getBlock() == Blocks.BEDROCK && HoleESP.mc.world.getBlockState(pos.east()).getBlock() == Blocks.BEDROCK && HoleESP.mc.world.getBlockState(pos.west()).getBlock() == Blocks.BEDROCK && HoleESP.mc.world.getBlockState(pos.south()).getBlock() == Blocks.BEDROCK && HoleESP.mc.world.getBlockState(pos.down()).getBlock() == Blocks.BEDROCK) {
+                    if (mc.world.getBlockState(pos.north()).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(pos.east()).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(pos.west()).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(pos.south()).getBlock() == Blocks.BEDROCK && mc.world.getBlockState(pos.down()).getBlock() == Blocks.BEDROCK) {
                         drawHole(true, pos);
                         continue;
                     }
-                    if (!BlockUtil.isBlockUnSafe(HoleESP.mc.world.getBlockState(pos.down()).getBlock()) || !BlockUtil.isBlockUnSafe(HoleESP.mc.world.getBlockState(pos.east()).getBlock()) || !BlockUtil.isBlockUnSafe(HoleESP.mc.world.getBlockState(pos.west()).getBlock()) || !BlockUtil.isBlockUnSafe(HoleESP.mc.world.getBlockState(pos.south()).getBlock()) || !BlockUtil.isBlockUnSafe(HoleESP.mc.world.getBlockState(pos.north()).getBlock()))
+                    if (!BlockUtil.isBlockUnSafe(mc.world.getBlockState(pos.down()).getBlock()) || !BlockUtil.isBlockUnSafe(mc.world.getBlockState(pos.east()).getBlock()) || !BlockUtil.isBlockUnSafe(mc.world.getBlockState(pos.west()).getBlock()) || !BlockUtil.isBlockUnSafe(mc.world.getBlockState(pos.south()).getBlock()) || !BlockUtil.isBlockUnSafe(mc.world.getBlockState(pos.north()).getBlock()))
                         continue;
                     drawHole(false, pos);
                 }
