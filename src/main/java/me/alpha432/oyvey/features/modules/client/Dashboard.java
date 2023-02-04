@@ -11,7 +11,7 @@ import me.alpha432.oyvey.features.modules.client.ClickGui;
 
 public class Dashboard extends Module {
 
-    public enum DashName {Uop, Medication, Viknet, Meowgod, Gothmoney}
+    public enum DashName {Uop, Medication, Viknet, Gothmoney}
     public Setting<DashName> dashname = register(new Setting("Name", DashName.Uop));
     public Setting<Boolean> sync = register(new Setting("Sync", false));
     public Setting<Integer> posX = register(new Setting("X", 2, 0, 1000));
@@ -55,11 +55,6 @@ public class Dashboard extends Module {
             case Viknet: {
                 name = "viknet.se";
                 namecolor = ColorUtil.toRGBA(0, 255, 0);
-                break;
-            }
-            case Meowgod: {
-                name = "meowgod.cat";
-                namecolor = ColorUtil.toRGBA(255, 128, 255);
                 break;
             }
             case Gothmoney: {
