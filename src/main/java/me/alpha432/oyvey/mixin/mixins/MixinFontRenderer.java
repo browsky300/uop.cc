@@ -1,10 +1,12 @@
 package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.FontMod;
+import me.alpha432.oyvey.features.modules.combat.AntiUnicode;
 import net.minecraft.client.gui.FontRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import me.alpha432.oyvey.OyVey;
 
@@ -16,6 +18,11 @@ public abstract class MixinFontRenderer {
             float i = OyVey.textManager.drawString(text, x, y, color, dropShadow);
             ci.setReturnValue((int)i);
         }
+    }
+    
+    @Inject(method = "renderUnicodeChar", at = @At(value = "HEAD"), cancellable = true)
+    private void renderUnicodeChar(char ch, boolean italic, CallbackInfoReturnable<Float> info) {
+        if (AntiUnicode.getINSTANCE().isOn()) info.setReturnValue(0.0f);
     }
 }
 

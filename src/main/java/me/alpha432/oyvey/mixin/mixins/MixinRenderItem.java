@@ -18,10 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import me.alpha432.oyvey.features.modules.render.ItemScale;
 import me.alpha432.oyvey.features.modules.render.GlintTweaks;
+
 import java.awt.Color;
-
-
-import me.alpha432.oyvey.features.command.Command;
 
 @Mixin(value={RenderItem.class})
 public class MixinRenderItem {

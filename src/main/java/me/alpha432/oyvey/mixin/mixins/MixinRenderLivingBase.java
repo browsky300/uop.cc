@@ -60,7 +60,6 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
                 z = entity.lastTickPosZ - Util.mc.getRenderManager().viewerPosZ;
             }
             
-            
             GlStateManager.pushMatrix();
             GlStateManager.disableCull();
             this.mainModel.swingProgress = getSwingProgress(entity, partialTicks);

@@ -47,6 +47,8 @@ public class ModuleManager
         // combat
         this.modules.add(new AntiDesyncC());
         this.modules.add(new AntiInvis());
+        this.modules.add(new AntiUnicode());
+        //this.modules.add(new AutoShield());
         this.modules.add(new AutoTrap());
         this.modules.add(new CallBackup());
         this.modules.add(new CAMessage());
@@ -88,6 +90,7 @@ public class ModuleManager
         this.modules.add(new AA());
         this.modules.add(new ArrowESP());
         this.modules.add(new AspectRatio());
+        this.modules.add(new Background());
         this.modules.add(new BlackBars());
         this.modules.add(new BlockHighlight());
         this.modules.add(new BurrowESP());
@@ -101,7 +104,6 @@ public class ModuleManager
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
-        this.modules.add(new NoBackground());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
         this.modules.add(new PlayerTweaks());

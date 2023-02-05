@@ -363,10 +363,10 @@ public class RenderUtil
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.shadeModel(7425);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        bufferbuilder.pos(x, h, 0.0).color(red, green, blue, alpha).endVertex();
-        bufferbuilder.pos(w, h, 0.0).color(red, green, blue, alpha).endVertex();
-        bufferbuilder.pos(w, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
-        bufferbuilder.pos(x, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+        bufferbuilder.pos(x, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+        bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+        bufferbuilder.pos(w, y, 0.0).color(red, green, blue, alpha).endVertex();
+        bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.enableAlpha();
