@@ -48,7 +48,6 @@ public class ModuleManager
         this.modules.add(new AntiDesyncC());
         this.modules.add(new AntiInvis());
         this.modules.add(new AntiUnicode());
-        //this.modules.add(new AutoShield());
         this.modules.add(new AutoTrap());
         this.modules.add(new CallBackup());
         this.modules.add(new CAMessage());
@@ -97,6 +96,7 @@ public class ModuleManager
         this.modules.add(new CCSwing());
         this.modules.add(new CrystalTweaks());
         this.modules.add(new DeathEffects());
+        this.modules.add(new DebugCrosshair());
         this.modules.add(new ESP());
         this.modules.add(new FutureVM());
         this.modules.add(new GlintTweaks());

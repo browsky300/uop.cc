@@ -346,7 +346,7 @@ public class RenderUtil
         GlStateManager.disableBlend();
     }
     
-    public static void drawGradientRect(float x, float y, float w, float h, long color, long color2) {
+    public static void drawGradientRect(float x, float y, float w, float h, long color, long color2, boolean vertical) {
         float alpha = (float) (color >> 24 & 0xFF) / 255.0f;
         float red = (float) (color >> 16 & 0xFF) / 255.0f;
         float green = (float) (color >> 8 & 0xFF) / 255.0f;
@@ -363,10 +363,17 @@ public class RenderUtil
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.shadeModel(7425);
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_COLOR);
-        bufferbuilder.pos(x, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
-        bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
-        bufferbuilder.pos(w, y, 0.0).color(red, green, blue, alpha).endVertex();
-        bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
+        if (vertical) {
+            bufferbuilder.pos(x, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, y, 0.0).color(red, green, blue, alpha).endVertex();
+            bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
+        } else {
+            bufferbuilder.pos(w, h, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(w, y, 0.0).color(red2, green2, blue2, alpha2).endVertex();
+            bufferbuilder.pos(x, y, 0.0).color(red, green, blue, alpha).endVertex();
+            bufferbuilder.pos(x, h, 0.0).color(red, green, blue, alpha).endVertex();
+        }
         tessellator.draw();
         GlStateManager.shadeModel(7424);
         GlStateManager.enableAlpha();
@@ -1219,6 +1226,18 @@ public class RenderUtil
 
         public static void drawHalfBox(BlockPos blockPos, int r, int g, int b, int a, int sides) {
             RenderTesselator.drawBox(INSTANCE.getBuffer(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1.0f, 0.5f, 1.0f, r, g, b, a, sides);
+        }
+    }
+    
+    public static void renderThroughWalls(boolean start) {
+        if (start) {
+            GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
+            GlStateManager.enablePolygonOffset();
+            GlStateManager.doPolygonOffset(1.0F, -2000000);
+        } else {
+            GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
+            GlStateManager.doPolygonOffset(1.0F, 2000000);
+            GlStateManager.disablePolygonOffset();
         }
     }
 }

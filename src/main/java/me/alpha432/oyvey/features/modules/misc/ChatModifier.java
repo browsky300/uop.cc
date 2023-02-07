@@ -7,10 +7,10 @@ import me.alpha432.oyvey.features.setting.Setting;
 import net.minecraft.network.play.client.CPacketChatMessage;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ChatModifier
-        extends Module {
+public class ChatModifier extends Module {
     private static ChatModifier INSTANCE = new ChatModifier();
-    public Setting<Boolean> clean = this.register(new Setting<Boolean>("NoChatBackground", Boolean.valueOf(false), "Cleans your chat"));
+    public enum Background {Default, None, Gradient};
+    public Setting<Background> background = register(new Setting("Background", Background.Default));
     public Setting<Boolean> infinite = this.register(new Setting<Boolean>("InfiniteChat", Boolean.valueOf(false), "Makes your chat infinite."));
     public boolean check;
 

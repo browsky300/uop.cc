@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.misc; // System.currentTimeMillis();
+package me.alpha432.oyvey.features.modules.misc;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.command.Command;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PacketLogger extends Module {
-    public Setting<Boolean> outgoing = this.register(new Setting<Boolean>("CPackets", Boolean.valueOf(false), "outgoing packets"));
-    public Setting<Boolean> incoming = this.register(new Setting<Boolean>("SPackets", Boolean.valueOf(false), "incoming packets"));
+    public Setting<Boolean> outgoing = this.register(new Setting<Boolean>("CPackets", false, "outgoing packets"));
+    public Setting<Boolean> incoming = this.register(new Setting<Boolean>("SPackets", false, "incoming packets"));
     public List<Long> times = new ArrayList<Long>();
 
     public PacketLogger() {
@@ -21,13 +21,13 @@ public class PacketLogger extends Module {
     
     @SubscribeEvent
     public void onPacketSend(PacketEvent.Send event) {
-        if (outgoing.getValue()) Command.sendMessage("⇧ " + event.getPacket().getClass().getSimpleName());
+        if (outgoing.getValue()) Command.sendSilentMessage("⇧ " + event.getPacket().getClass().getSimpleName());
         times.add(System.currentTimeMillis());
     }
     
     @SubscribeEvent
     public void onPacketReceive(PacketEvent.Receive event) {
-        if (incoming.getValue()) Command.sendMessage("⇩ " + event.getPacket().getClass().getSimpleName());
+        if (incoming.getValue()) Command.sendSilentMessage("⇩ " + event.getPacket().getClass().getSimpleName());
     }
     
     @Override

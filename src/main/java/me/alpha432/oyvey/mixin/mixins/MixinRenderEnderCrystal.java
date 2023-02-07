@@ -4,6 +4,7 @@ import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.modules.render.Wireframe;
 import me.alpha432.oyvey.features.modules.render.CrystalTweaks;
 import me.alpha432.oyvey.util.ColorUtil;
+import me.alpha432.oyvey.util.RenderUtil;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderCrystal;
 import net.minecraft.client.renderer.GlStateManager;
@@ -39,6 +40,7 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
 
     @Overwrite
     public void doRender(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        if (CrystalTweaks.getINSTANCE().isOn() && CrystalTweaks.getINSTANCE().throughWalls.getValue()) RenderUtil.renderThroughWalls(true);
         float f = entity.innerRotation + partialTicks;
         GlStateManager.pushMatrix();
         GlStateManager.translate((float) x, (float) y, (float) z);
@@ -108,6 +110,7 @@ public class MixinRenderEnderCrystal extends Render<EntityEnderCrystal> {
             RenderDragon.renderCrystalBeams(x + d0, y - 0.3D + (f1 * 0.4F) + d1, z + d2, partialTicks, f2, f3, f4, entity.innerRotation, entity.posX, entity.posY, entity.posZ);
         }
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        if (CrystalTweaks.getINSTANCE().isOn() && CrystalTweaks.getINSTANCE().throughWalls.getValue()) RenderUtil.renderThroughWalls(false);
     }
 
     @Nullable

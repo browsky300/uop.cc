@@ -7,6 +7,7 @@ import me.alpha432.oyvey.features.modules.render.PlayerTweaks;
 import me.alpha432.oyvey.features.modules.render.DeathEffects;
 import me.alpha432.oyvey.features.modules.render.AA;
 import me.alpha432.oyvey.util.ColorUtil;
+import me.alpha432.oyvey.util.RenderUtil;
 import me.alpha432.oyvey.util.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -53,6 +54,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if (!MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(entity, RenderLivingBase.class.cast(this), partialTicks, x, y, z))) {
             boolean tweaking = PlayerTweaks.getINSTANCE().isOn() && entity instanceof EntityPlayer;
+            if (tweaking && PlayerTweaks.getINSTANCE().throughWalls.getValue()) RenderUtil.renderThroughWalls(true);
             if (tweaking && PlayerTweaks.getINSTANCE().nointerpolate.getValue()) {
                 partialTicks = 0;
                 x = entity.lastTickPosX - Util.mc.getRenderManager().viewerPosX;
@@ -229,6 +231,7 @@ public abstract class MixinRenderLivingBase<T extends EntityLivingBase> extends 
             GlStateManager.popMatrix();
             super.doRender(entity, x, y, z, entityYaw, partialTicks);
             MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(entity, RenderLivingBase.class.cast(this), partialTicks, x, y, z));
+            if (tweaking && PlayerTweaks.getINSTANCE().throughWalls.getValue()) RenderUtil.renderThroughWalls(false);
         }
     }
 

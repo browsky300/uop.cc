@@ -1,6 +1,7 @@
 package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.misc.ChatModifier;
+import me.alpha432.oyvey.util.RenderUtil;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiNewChat;
@@ -15,7 +16,8 @@ public class MixinGuiNewChat
         extends Gui {
     @Redirect(method = {"drawChat"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiNewChat;drawRect(IIIII)V"))
     private void drawRectHook(int left, int top, int right, int bottom, int color) {
-        Gui.drawRect(left, top, right, bottom, ChatModifier.getInstance().isOn() && ChatModifier.getInstance().clean.getValue() != false ? 0 : color);
+        ChatModifier cmod = ChatModifier.getInstance();
+        RenderUtil.drawGradientRect(left, top, right, bottom, cmod.isOn() && cmod.background.getValue() == ChatModifier.Background.None ? 0 : color, cmod.isOn() && cmod.background.getValue() != ChatModifier.Background.Default ? 0 : color, false);
     }
 
     @Redirect(method = {"setChatLine"}, at = @At(value = "INVOKE", target = "Ljava/util/List;size()I", ordinal = 0))
