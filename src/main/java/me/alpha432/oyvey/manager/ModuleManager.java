@@ -104,6 +104,7 @@ public class ModuleManager
         this.modules.add(new HoleESP());
         this.modules.add(new IHateYou());
         this.modules.add(new ItemScale());
+        this.modules.add(new LogSpots());
         this.modules.add(new NoSway());
         this.modules.add(new OldAnimations());
         this.modules.add(new PlayerTweaks());
