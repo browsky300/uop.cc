@@ -31,7 +31,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Kamiblue: {
-                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "カミブル" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.GREEN + "enabled";
+                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "\u30ab\u30df\u30d6\u30eb" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.GREEN + "enabled";
                 break;
             }
             case Konas: {
@@ -39,7 +39,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Lambda: {
-                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "λ" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.GREEN + "enabled";
+                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "\u03bb" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.GREEN + "enabled";
                 break;
             }
             case Newbase: {
@@ -47,7 +47,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Opfern: {
-                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.RED + "ᴏᴘꜰᴇʀɴ" + ChatFormatting.GRAY + "] " + ChatFormatting.RED + "AutoCrystal " + ChatFormatting.GREEN + "Enabled!";
+                onMessage = ChatFormatting.GRAY + "[" + ChatFormatting.RED + "\u1d0f\u1d18\ua730\u1d07\u0280\u0274" + ChatFormatting.GRAY + "] " + ChatFormatting.RED + "AutoCrystal " + ChatFormatting.GREEN + "Enabled!";
                 break;
             }
             case Oyvey: {
@@ -71,7 +71,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Viknet: {
-                onMessage = ChatFormatting.GRAY + "VikNet " + ChatFormatting.DARK_GRAY + "➫ " + ChatFormatting.WHITE + "VikNetAura " + ChatFormatting.DARK_GREEN + "ON";
+                onMessage = ChatFormatting.GRAY + "VikNet " + ChatFormatting.DARK_GRAY + "\u27ab " + ChatFormatting.WHITE + "VikNetAura " + ChatFormatting.DARK_GREEN + "ON";
                 break;
             }
             case Wurstplus2: {
@@ -99,7 +99,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Kamiblue: {
-                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "カミブル" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.RED + "disabled";
+                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "\u30ab\u30df\u30d6\u30eb" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.RED + "disabled";
                 break;
             }
             case Konas: {
@@ -107,7 +107,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Lambda: {
-                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "λ" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.RED + "disabled";
+                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.BLUE + "\u03bb" + ChatFormatting.GRAY + "] " + ChatFormatting.WHITE + "CrystalAura " + ChatFormatting.RED + "disabled";
                 break;
             }
             case Newbase: {
@@ -115,7 +115,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Opfern: {
-                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.RED + "ᴏᴘꜰᴇʀɴ" + ChatFormatting.GRAY + "] " + ChatFormatting.RED + "AutoCrystal Disabled!";
+                offMessage = ChatFormatting.GRAY + "[" + ChatFormatting.RED + "\u1d0f\u1d18\ua730\u1d07\u0280\u0274" + ChatFormatting.GRAY + "] " + ChatFormatting.RED + "AutoCrystal Disabled!";
                 break;
             }
             case Oyvey: {
@@ -139,7 +139,7 @@ public class CAMessage extends Module {
                 break;
             }
             case Viknet: {
-                offMessage = ChatFormatting.GRAY + "VikNet " + ChatFormatting.DARK_GRAY + "➫ " +  ChatFormatting.WHITE + "VikNetAura " + ChatFormatting.DARK_RED + "OFF";
+                offMessage = ChatFormatting.GRAY + "VikNet " + ChatFormatting.DARK_GRAY + "\u27ab " +  ChatFormatting.WHITE + "VikNetAura " + ChatFormatting.DARK_RED + "OFF";
                 break;
             }
             case Wurstplus2: {
