@@ -8,6 +8,7 @@ import me.alpha432.oyvey.util.Timer;
 import net.minecraft.util.math.MathHelper;
 import me.alpha432.oyvey.util.ColorUtil;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
+import me.alpha432.oyvey.features.modules.misc.Alias;
 
 import java.awt.*;
 
@@ -38,6 +39,7 @@ public class TextManager
     }
 
     public float drawString(String text, float x, float y, int color, boolean shadow) {
+        text = Alias.getINSTANCE().replaceWithAliases(text);
         if (OyVey.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             if (shadow) {
                 return this.customFont.drawStringWithShadow(text, x, y, color);
@@ -49,6 +51,7 @@ public class TextManager
     }
 
     public int getStringWidth(String text) {
+        text = Alias.getINSTANCE().replaceWithAliases(text);
         if (OyVey.moduleManager.isModuleEnabled(FontMod.getInstance().getName())) {
             return this.customFont.getStringWidth(text);
         }
