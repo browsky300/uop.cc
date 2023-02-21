@@ -124,6 +124,21 @@ public class MathUtil
         return "Good Night ";
     }
 
+    public static String getShortTimeOfDay() {
+        Calendar c = Calendar.getInstance();
+        int timeOfDay = c.get(11);
+        if (timeOfDay < 12) {
+            return "morning";
+        }
+        if (timeOfDay < 16) {
+            return "afternoon";
+        }
+        if (timeOfDay < 21) {
+            return "evening";
+        }
+        return "night";
+    }
+
     public static double radToDeg(double rad) {
         return rad * (double) 57.29578f;
     }

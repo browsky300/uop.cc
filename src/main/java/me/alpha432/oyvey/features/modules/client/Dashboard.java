@@ -15,7 +15,7 @@ public class Dashboard extends Module {
     public Setting<DashName> dashname = register(new Setting("Name", DashName.Uop));
     public Setting<Boolean> sync = register(new Setting("Sync", false));
     public Setting<Integer> posX = register(new Setting("X", 2, 0, 1000));
-    public Setting<Integer> posY = register(new Setting("Y", 200, 0, 500));
+    public Setting<Integer> posY = register(new Setting("Y", 200, 0, 1000));
 
     public Dashboard() {
         super("Dashboard", "Displays some info for PvP", Category.CLIENT, true, false, false);

@@ -2,6 +2,7 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.FontMod;
 import me.alpha432.oyvey.features.modules.combat.AntiUnicode;
+import me.alpha432.oyvey.features.modules.misc.Alias;
 import net.minecraft.client.gui.FontRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,6 +15,9 @@ import me.alpha432.oyvey.OyVey;
 public abstract class MixinFontRenderer {
     @Inject(method={"drawString(Ljava/lang/String;FFIZ)I"}, at={@At(value="HEAD")}, cancellable=true)
     public void drawString(String text, float x, float y, int color, boolean dropShadow, CallbackInfoReturnable<Integer> ci) {
+        if (Alias.getINSTANCE().isOn()) {
+            
+        }
         if (FontMod.getInstance().isOn() && FontMod.getInstance().minecraft.getValue()) {
             ci.setReturnValue((int) OyVey.textManager.drawString(text, x, y, color, dropShadow));
         }

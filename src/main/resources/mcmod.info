@@ -1,15 +1,15 @@
 [
   {
     "modid": "oyvey",
-    "name": "OyVey",
-    "description": "1.12.2 Anarchy PvP Client",
-    "version": "0.0.3",
+    "name": "uop.cc",
+    "description": "awesome!!",
+    "version": "1.0.0-BETA-OMG-HOLY-CRAP",
     "mcversion": "1.12.2",
     "logoFile": "niggahack.png",
-    "url": "https://discordapp.com/invite/WcAx3ps",
+    "url": "https://uop.money",
     "updateUrl": "",
     "authorList": [
-      "Alpha432"
+      "browsky300"
     ],
     "screenshots": [],
     "dependencies": []

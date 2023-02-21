@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class HUD extends Module {
-    public String version = " v1.0.0-BETA-OMG-HOLY-CRAP";
+    public String version = "v1.0.0-BETA-OMG-HOLY-CRAP";
     private static final ResourceLocation box = new ResourceLocation("textures/gui/container/shulker_box.png");
     private static final ItemStack totem = new ItemStack(Items.TOTEM_OF_UNDYING);
     private static HUD INSTANCE = new HUD();
@@ -110,7 +110,7 @@ public class HUD extends Module {
             }
             
             if (this.versionNumber.getValue().booleanValue()) {
-                this.renderer.drawString(version, 2.0F + this.renderer.getStringWidth(string), this.waterMarkY.getValue().intValue(), ColorUtil.toRGBA(255, 255, 255), true);
+                this.renderer.drawString("" + version, 2.0F + this.renderer.getStringWidth(string), this.waterMarkY.getValue().intValue(), ColorUtil.toRGBA(255, 255, 255), true);
             }
         }
         int[] counter1 = {1};
