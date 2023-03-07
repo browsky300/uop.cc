@@ -91,10 +91,10 @@ public class Trajectories extends Module {
                             landingPosition = possibleEntityLanding;
                         }
                     }
-                    if (landingOnEntity != null) {
+                    /*if (landingOnEntity != null) {
                         GlStateManager.color(1.0f, 0.0f, 0.0f, 1.0f);
                         hitInfo = ChatFormatting.GREEN + "Hit";
-                    }
+                    }*/
                     posX += motionX;
                     posY += motionY;
                     posZ += motionZ;
@@ -183,8 +183,8 @@ public class Trajectories extends Module {
     }
     
     
-    @Override
+    /*@Override
     public String getDisplayInfo() {
         return hitInfo;
-    }
+    }*/
 }

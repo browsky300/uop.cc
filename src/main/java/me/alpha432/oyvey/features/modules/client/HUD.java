@@ -110,7 +110,7 @@ public class HUD extends Module {
             }
             
             if (this.versionNumber.getValue().booleanValue()) {
-                this.renderer.drawString("" + version, 2.0F + this.renderer.getStringWidth(string), this.waterMarkY.getValue().intValue(), ColorUtil.toRGBA(255, 255, 255), true);
+                this.renderer.drawString(" " + version, 2.0F + this.renderer.getStringWidth(string), this.waterMarkY.getValue().intValue(), ColorUtil.toRGBA(255, 255, 255), true);
             }
         }
         int[] counter1 = {1};

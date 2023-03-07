@@ -7,8 +7,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
 @Mixin(GuiIngame.class)
-public class MixinGuiIngame {
+public abstract class MixinGuiIngame {
+    
     @Inject(method = "renderAttackIndicator", at = @At(value = "HEAD"), cancellable = true)
     public void renderAttackIndicatorHook(CallbackInfo info) {
         if (DebugCrosshair.getINSTANCE().isOn()) info.cancel();

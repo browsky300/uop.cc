@@ -21,13 +21,13 @@ public class PacketLogger extends Module {
     
     @SubscribeEvent
     public void onPacketSend(PacketEvent.Send event) {
-        if (outgoing.getValue()) Command.sendSilentMessage("⇧ " + event.getPacket().getClass().getSimpleName());
+        if (outgoing.getValue()) Command.sendSilentMessage("\u21e7 " + event.getPacket().getClass().getSimpleName());
         times.add(System.currentTimeMillis());
     }
     
     @SubscribeEvent
     public void onPacketReceive(PacketEvent.Receive event) {
-        if (incoming.getValue()) Command.sendSilentMessage("⇩ " + event.getPacket().getClass().getSimpleName());
+        if (incoming.getValue()) Command.sendSilentMessage("\u21e9 " + event.getPacket().getClass().getSimpleName());
     }
     
     @Override

@@ -2,6 +2,7 @@ package me.alpha432.oyvey.features.modules.misc;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
+import me.alpha432.oyvey.features.modules.combat.FCAIALM;
 
 public class Alias extends Module {
     private static Alias INSTANCE = new Alias();
@@ -44,6 +45,7 @@ public class Alias extends Module {
     }
 
     public String replaceWithAliases(String text) {
+        if (FCAIALM.getINSTANCE().isOn()) text = FCAIALM.getINSTANCE().getCAString(text);
         if (isOn()) {
             /*Module module = OyVey.moduleManager.getModuleByName("Alias");
             for (int i = 1; i > 10; i++) {

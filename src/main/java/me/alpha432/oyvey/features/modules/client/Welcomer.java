@@ -24,7 +24,7 @@ public class Welcomer extends Module {
         String wStr = welcomerSetting.getValue();
         wStr = wStr.replace("$c", HUD.getInstance().command.getValue());
         wStr = wStr.replace("$n", mc.player.getDisplayNameString());
-        wStr = wStr.replace("$s", mc.getCurrentServerData().serverIP != null ? mc.getCurrentServerData().serverIP : "singleplayer");
+        wStr = wStr.replace("$s", mc.getCurrentServerData() != null ? mc.getCurrentServerData().serverIP : "singleplayer");
         wStr = wStr.replace("$t", MathUtil.getShortTimeOfDay());
         wStr = wStr.replace("$v", HUD.getInstance().version);
         

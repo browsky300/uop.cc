@@ -16,7 +16,7 @@ public class FakeDuelMessage extends Module {
     @Override
     public void onEnable() {
         if (fullNullCheck()) return;
-        Command.sendSilentMessage(ChatFormatting.BLUE + "[Duels] " + ChatFormatting.WHITE + mc.player.getDisplayNameString() + ChatFormatting.GREEN + " (100) (+0) " + ChatFormatting.GRAY + "has defeated " + ChatFormatting.WHITE + this.LoserName.getPlannedValue() + " " + ChatFormatting.RED + "(100) (-0) " + ChatFormatting.GRAY + "on kit " + ChatFormatting.DARK_AQUA + "none " + ChatFormatting.GRAY + "with " + ChatFormatting.LIGHT_PURPLE + "10.0♥");
+        Command.sendSilentMessage(ChatFormatting.BLUE + "[Duels] " + ChatFormatting.WHITE + mc.player.getDisplayNameString() + ChatFormatting.GREEN + " (100) (+0) " + ChatFormatting.GRAY + "has defeated " + ChatFormatting.WHITE + this.LoserName.getPlannedValue() + " " + ChatFormatting.RED + "(100) (-0) " + ChatFormatting.GRAY + "on kit " + ChatFormatting.DARK_AQUA + "none " + ChatFormatting.GRAY + "with " + ChatFormatting.LIGHT_PURPLE + "10.0\u2665");
         this.disable();
     }
 } 
