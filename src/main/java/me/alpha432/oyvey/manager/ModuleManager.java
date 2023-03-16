@@ -57,7 +57,6 @@ public class ModuleManager
         this.modules.add(new Selftrap());
         
         // misc
-        this.modules.add(new Alias());
         this.modules.add(new AutoConfig());
         this.modules.add(new AutoJewbase());
         this.modules.add(new BuildHeight());

@@ -2,7 +2,7 @@ package me.alpha432.oyvey.mixin.mixins;
 
 import me.alpha432.oyvey.features.modules.client.FontMod;
 import me.alpha432.oyvey.features.modules.combat.AntiUnicode;
-import me.alpha432.oyvey.features.modules.misc.Alias;
+import me.alpha432.oyvey.features.modules.combat.FCAIALM;
 import net.minecraft.client.gui.FontRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,11 +20,6 @@ public abstract class MixinFontRenderer {
     
     @Shadow
     protected abstract int getCharWidth(char v1);
-    
-    /*private boolean injection = true;
-
-    @Shadow
-    protected abstract int getStringWidth(String v);*/
 
     @Inject(method={"drawString(Ljava/lang/String;FFIZ)I"}, at={@At(value="HEAD")}, cancellable=true)
     public void drawString(String text, float x, float y, int color, boolean dropShadow, CallbackInfoReturnable<Integer> ci) {
@@ -33,18 +28,6 @@ public abstract class MixinFontRenderer {
         }
     }
     
-    /*@Inject(method={"getStringWidth(Ljava/lang/String;)I"}, at={@At(value="HEAD")}, cancellable=true)
-    public void getStringWidthHook(String text, CallbackInfoReturnable<Integer> ci) {
-        if (FontMod.getInstance().isOn() && FontMod.getInstance().minecraft.getValue()) {
-            ci.setReturnValue(OyVey.textManager.getStringWidth(text));
-        }
-        if (injection) {
-            injection = false;
-            this.getStringWidth(Alias.getINSTANCE().replaceWithAliases(text));
-        }
-        injection = true;
-    }*/
-    
     @Inject(method = "renderUnicodeChar", at = @At(value = "HEAD"), cancellable = true)
     private void renderUnicodeChar(char ch, boolean italic, CallbackInfoReturnable<Float> info) {
         if (AntiUnicode.getINSTANCE().isOn()) info.setReturnValue(0.0f);
@@ -52,7 +35,7 @@ public abstract class MixinFontRenderer {
 
     @ModifyArg(method = {"renderString(Ljava/lang/String;FFIZ)I"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/FontRenderer;renderStringAtPos(Ljava/lang/String;Z)V"), index = 0)
     public String doAliasing(String text) {
-        return Alias.getINSTANCE().replaceWithAliases(text);
+        return FCAIALM.getINSTANCE().replaceWithAliases(text);
     }
 
     @Overwrite
@@ -60,7 +43,7 @@ public abstract class MixinFontRenderer {
         if (FontMod.getInstance().isOn() && FontMod.getInstance().minecraft.getValue()) {
             return OyVey.textManager.getStringWidth(text);
         }
-        text = Alias.getINSTANCE().replaceWithAliases(text);
+        text = FCAIALM.getINSTANCE().replaceWithAliases(text);
         if (text == null) {
             return 0;
         } else {

@@ -16,16 +16,18 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 
 public class FCAIALM extends Module {
     private static FCAIALM INSTANCE = new FCAIALM();
-    enum FutureVersion {None, AP, One}
-    Setting<FutureVersion> futureversion = register(new Setting("Version", FutureVersion.None));
+    enum CAMode {None, AP, One, Default}
+    enum SurroundMode {AntiDie, AutoObsidian, Surround, Default}
+    Setting<CAMode> camode = register(new Setting("CA", CAMode.Default));
+    Setting<SurroundMode> surroundmode = register(new Setting("Surround", SurroundMode.Default));
+    Setting<Boolean> doWatermark = register(new Setting("Watermark", false));
+    Setting<String> cWatermark = register(new Setting("W", "Future v2.11.1"));
     boolean APstringAttacking = true;
     boolean APhasPlaced = false;
     boolean APhasAttacked = false;
     boolean APpacketAttacking = true;
-    boolean APhasAltSilentSwitched = false;
     boolean APnothing = true;
     Timer APtimer = new Timer();
-    int heldSlot = 0;
 
     public FCAIALM() {
         super("FCAIALM", "very cool", Category.COMBAT, true, false, false);
@@ -34,29 +36,18 @@ public class FCAIALM extends Module {
 
     @SubscribeEvent
     public void onPacketSend(PacketEvent.Send event) {
-        if (event.getPacket() instanceof CPacketHeldItemChange) {
-            CPacketHeldItemChange switchPacket = event.getPacket();
-            heldSlot = switchPacket.getSlotId();
-        }
-
-        if (event.getPacket() instanceof CPacketClickWindow) {
-            CPacketClickWindow clickPacket = event.getPacket();
-            if (clickPacket.getWindowId() == 0) APhasAltSilentSwitched = true;
-        }
 
         if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
             CPacketPlayerTryUseItemOnBlock placePacket = event.getPacket();
             if (placePacket.hand == EnumHand.MAIN_HAND) {
-                if (mc.player.inventory.getStackInSlot(heldSlot).getItem() == Items.END_CRYSTAL || APhasAltSilentSwitched) {
+                if (mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL) {
                     APhasPlaced = true;
                     APpacketAttacking = false;
-                    APhasAltSilentSwitched = false;
                 }
             } else {
                 if (mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL) {
                     APhasPlaced = true;
                     APpacketAttacking = false;
-                    APhasAltSilentSwitched = false;
                 }
             }
         }
@@ -93,28 +84,52 @@ public class FCAIALM extends Module {
         }
     }
 
-    public String getCAString(String original) {
-        if (!original.startsWith("AutoCrystal " + ChatFormatting.GRAY + "[")) return original;
-        switch (futureversion.getValue()) {
-            case None: {
-                return "AutoCrystal";
-            }
-            case AP: {
-                if (APnothing) {
+    public String replaceWithAliases(String text) {
+        if (!isOn()) return text;
+        if (text.startsWith("AutoCrystal " + ChatFormatting.GRAY + "[")) {
+            switch (camode.getValue()) {
+                case None: {
                     return "AutoCrystal";
-                } else {
-                    return "AutoCrystal " + ChatFormatting.GRAY + "[" + ChatFormatting.WHITE + (APstringAttacking ? "Attack" : "Place") + ChatFormatting.GRAY + "]";
+                }
+                case AP: {
+                    if (APnothing) {
+                        return "AutoCrystal";
+                    } else {
+                        return "AutoCrystal " + ChatFormatting.GRAY + "[" + ChatFormatting.WHITE + (APstringAttacking ? "Attack" : "Place") + ChatFormatting.GRAY + "]";
+                    }
+                }
+                case One: {
+                    return text.replaceAll("\\,.*]", "]");
+                }
+                default: {
+                    return text;
                 }
             }
-            case One: {
-                return original.replaceAll("\\,.*]", "]");
-            }
-            default: {
-                return original;
+        }
+
+        if (text.startsWith("FeetTrap " + ChatFormatting.GRAY + "[")) {
+            switch (surroundmode.getValue()) {
+                case AntiDie: {
+                    return "AntiDie";
+                }
+                case AutoObsidian: {
+                    return "AutoObsidian";
+                }
+                case Surround: {
+                    return "Surround";
+                }
+                default: {
+                    return text;
+                }
             }
         }
-    }
 
+        if (text.startsWith("Future v")) {
+            return cWatermark.getValue();
+        }
+        
+        return text;
+    }
 
     public static FCAIALM getINSTANCE() {
         if (INSTANCE == null) {
