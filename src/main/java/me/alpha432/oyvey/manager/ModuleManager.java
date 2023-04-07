@@ -64,7 +64,6 @@ public class ModuleManager
         this.modules.add(new CustomTime());
         this.modules.add(new ExtraTab());
         this.modules.add(new FakeDuelMessage());
-        this.modules.add(new FutureColor());
         this.modules.add(new GoodLuckCharm());
         this.modules.add(new PacketLogger());
         this.modules.add(new PopCounter());
