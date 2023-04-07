@@ -20,8 +20,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.minecraft.init.Items;
+import net.minecraft.client.entity.EntityPlayerSP;
 
 @Mixin(value = {ItemRenderer.class})
 public abstract class MixinItemRenderer {
@@ -40,7 +42,8 @@ public abstract class MixinItemRenderer {
     public void renderItemInFirstPersonHook(AbstractClientPlayer player, float p_187457_2_, float p_187457_3_, EnumHand hand, float p_187457_5_, ItemStack stack, float p_187457_7_, CallbackInfo info) {
         if (this.injection) {
             info.cancel();
-            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Full && (hand == EnumHand.MAIN_HAND ? OldAnimations.getINSTANCE().mainhand.getValue() : OldAnimations.getINSTANCE().offhand.getValue())) p_187457_7_ = 0;
+            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Full) p_187457_7_ = 0;
+            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Good && p_187457_5_ != 0) p_187457_7_ = 0;
             SmallShield offset = SmallShield.getINSTANCE();
             float xOffset = 0.0f;
             float yOffset = 0.0f;
@@ -106,6 +109,12 @@ public abstract class MixinItemRenderer {
         if (NoSway.getINSTANCE().isOn()) {
             info.cancel();
         }
+    }
+
+    @Redirect(method = "updateEquippedItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/EntityPlayerSP;getCooledAttackStrength(F)F"))
+    public float getAttackStrengthHook(EntityPlayerSP player, float adjustTicks) {
+        if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Good) return 1.0F;
+        return player.getCooledAttackStrength(adjustTicks);
     }
 }
 
