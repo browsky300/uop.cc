@@ -21,7 +21,8 @@ public class FCAIALM extends Module {
     Setting<CAMode> camode = register(new Setting("CA", CAMode.Default));
     Setting<SurroundMode> surroundmode = register(new Setting("Surround", SurroundMode.Default));
     Setting<Boolean> doWatermark = register(new Setting("Watermark", false));
-    Setting<String> cWatermark = register(new Setting("W", "Future v2.11.1"));
+    Setting<String> cWatermark = register(new Setting("W", "Future v2.11.1", v -> doWatermark.getValue()));
+    Setting<Boolean> noinfo = register(new Setting("NoInfo", false));
     boolean APstringAttacking = true;
     boolean APhasPlaced = false;
     boolean APhasAttacked = false;
@@ -86,7 +87,13 @@ public class FCAIALM extends Module {
 
     public String replaceWithAliases(String text) {
         if (!isOn()) return text;
+
+        if (text.contains(" " + ChatFormatting.GRAY + "[") && noinfo.getValue()) {
+            return text.replaceAll(" " + ChatFormatting.GRAY + "\\[.*]", "");
+        }
+
         if (text.startsWith("AutoCrystal " + ChatFormatting.GRAY + "[")) {
+
             switch (camode.getValue()) {
                 case None: {
                     return "AutoCrystal";
@@ -124,7 +131,7 @@ public class FCAIALM extends Module {
             }
         }
 
-        if (text.startsWith("Future v")) {
+        if (text.startsWith("Future v") && doWatermark.getValue()) {
             return cWatermark.getValue();
         }
         

@@ -6,7 +6,6 @@ import me.alpha432.oyvey.features.modules.render.SmallShield;
 import me.alpha432.oyvey.features.modules.render.NoSway;
 import me.alpha432.oyvey.features.modules.render.FutureVM;
 import me.alpha432.oyvey.features.modules.render.OldAnimations;
-import me.alpha432.oyvey.features.modules.render.CCSwing;
 import me.alpha432.oyvey.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -41,8 +40,7 @@ public abstract class MixinItemRenderer {
     public void renderItemInFirstPersonHook(AbstractClientPlayer player, float p_187457_2_, float p_187457_3_, EnumHand hand, float p_187457_5_, ItemStack stack, float p_187457_7_, CallbackInfo info) {
         if (this.injection) {
             info.cancel();
-            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Full) p_187457_7_ = 0;
-            if (CCSwing.getINSTANCE().isOn() && hand == mc.player.swingingHand) p_187457_5_ = CCSwing.getINSTANCE().progress.getValue();
+            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Full && (hand == EnumHand.MAIN_HAND ? OldAnimations.getINSTANCE().mainhand.getValue() : OldAnimations.getINSTANCE().offhand.getValue())) p_187457_7_ = 0;
             SmallShield offset = SmallShield.getINSTANCE();
             float xOffset = 0.0f;
             float yOffset = 0.0f;

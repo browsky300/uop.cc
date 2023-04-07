@@ -17,7 +17,7 @@ public class InstantSpeed extends Module {
     @SubscribeEvent
     public void onMoveEvent(MoveEvent event) {
         if (mc.player.posY < 7 && noBedrock.getValue()) return;
-        if (!(event.getStage() != 0 || mc.player.isSneaking() || mc.player.isInWater() || mc.player.isInLava() || mc.player.movementInput.moveForward == 0.0f && mc.player.movementInput.moveStrafe == 0.0f)) {
+        if (!(event.getStage() != 0 || mc.player.isSneaking() || mc.player.isInWater() || mc.player.isInLava() || mc.player.isElytraFlying() || mc.player.movementInput.moveForward == 0.0f && mc.player.movementInput.moveStrafe == 0.0f)) {
             MovementInput movementInput = mc.player.movementInput;
             float moveForward = movementInput.moveForward;
             float moveStrafe = movementInput.moveStrafe;
