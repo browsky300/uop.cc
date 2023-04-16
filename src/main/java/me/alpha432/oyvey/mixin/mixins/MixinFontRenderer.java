@@ -3,6 +3,7 @@ package me.alpha432.oyvey.mixin.mixins;
 import me.alpha432.oyvey.features.modules.client.FontMod;
 import me.alpha432.oyvey.features.modules.combat.AntiUnicode;
 import me.alpha432.oyvey.features.modules.combat.FCAIALM;
+import me.alpha432.oyvey.features.modules.misc.AllCaps;
 import net.minecraft.client.gui.FontRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,7 +36,7 @@ public abstract class MixinFontRenderer {
 
     @ModifyArg(method = {"renderString(Ljava/lang/String;FFIZ)I"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/FontRenderer;renderStringAtPos(Ljava/lang/String;Z)V"), index = 0)
     public String doAliasing(String text) {
-        return FCAIALM.getINSTANCE().replaceWithAliases(text);
+        return AllCaps.getINSTANCE().changeCaps(FCAIALM.getINSTANCE().replaceWithAliases(text));
     }
 
     @Overwrite
@@ -44,6 +45,7 @@ public abstract class MixinFontRenderer {
             return OyVey.textManager.getStringWidth(text);
         }
         text = FCAIALM.getINSTANCE().replaceWithAliases(text);
+        text = AllCaps.getINSTANCE().changeCaps(text);
         if (text == null) {
             return 0;
         } else {
