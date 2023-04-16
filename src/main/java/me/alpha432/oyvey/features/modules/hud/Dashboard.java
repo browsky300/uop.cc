@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.client;
+package me.alpha432.oyvey.features.modules.hud;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
@@ -18,7 +18,7 @@ public class Dashboard extends Module {
     public Setting<Integer> posY = register(new Setting("Y", 200, 0, 1000));
 
     public Dashboard() {
-        super("Dashboard", "Displays some info for PvP", Category.CLIENT, true, false, false);
+        super("Dashboard", "Displays some info for PvP", Category.HUD, true, false, false);
     }
 
     public void onRender2D(Render2DEvent event) {

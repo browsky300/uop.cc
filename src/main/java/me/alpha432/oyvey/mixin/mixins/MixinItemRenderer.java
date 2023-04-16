@@ -43,7 +43,15 @@ public abstract class MixinItemRenderer {
         if (this.injection) {
             info.cancel();
             if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Full) p_187457_7_ = 0;
-            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Good && p_187457_5_ != 0) p_187457_7_ = 0;
+            if (OldAnimations.getINSTANCE().isOn() && OldAnimations.getINSTANCE().mode.getValue() == OldAnimations.Mode.Good && p_187457_5_ != 0) {
+                if (hand == EnumHand.MAIN_HAND) {
+                    mc.entityRenderer.itemRenderer.equippedProgressMainHand = 1.0f;
+                    mc.entityRenderer.itemRenderer.itemStackMainHand = mc.player.getHeldItemMainhand();
+                } else {
+                    mc.entityRenderer.itemRenderer.equippedProgressOffHand = 1.0f;
+                    mc.entityRenderer.itemRenderer.itemStackOffHand = mc.player.getHeldItemOffhand();
+                }
+            }
             SmallShield offset = SmallShield.getINSTANCE();
             float xOffset = 0.0f;
             float yOffset = 0.0f;

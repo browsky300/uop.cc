@@ -9,20 +9,29 @@ import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import me.alpha432.oyvey.util.TextUtil;
 
 public class ClickGui
         extends Module {
     private static ClickGui INSTANCE = new ClickGui();
+    public String version = "v1.0.0-BETA-OMG-HOLY-CRAP";
+    public Setting<Boolean> toggleMsg = this.register(new Setting<Boolean>("ToggleMessage", true));
+    
     public Setting<String> prefix = this.register(new Setting<String>("Prefix", "."));
+    
+    public Setting<String> command = register(new Setting("Command", "uop.cc"));
+    public Setting<TextUtil.Color> bracketColor = register(new Setting("BracketColor", TextUtil.Color.YELLOW));
+    public Setting<TextUtil.Color> commandColor = register(new Setting("NameColor", TextUtil.Color.YELLOW));
+    public Setting<String> commandBracket = register(new Setting("Bracket", ""));
+    public Setting<String> commandBracket2 = register(new Setting("Bracket2", ":"));
+
     public Setting<Boolean> customFov = this.register(new Setting<Boolean>("CustomFov", false));
     public Setting<Float> fov = this.register(new Setting<Float>("Fov", Float.valueOf(150.0f), Float.valueOf(-180.0f), Float.valueOf(180.0f)));
     public Setting<Integer> red = this.register(new Setting<Integer>("Red", 0, 0, 255));
     public Setting<Integer> green = this.register(new Setting<Integer>("Green", 0, 0, 255));
     public Setting<Integer> blue = this.register(new Setting<Integer>("Blue", 255, 0, 255));
     public Setting<Integer> hoverAlpha = this.register(new Setting<Integer>("Alpha", 180, 0, 255));
-    public Setting<Integer> topRed = this.register(new Setting<Integer>("SecondRed", 0, 0, 255));
-    public Setting<Integer> topGreen = this.register(new Setting<Integer>("SecondGreen", 0, 0, 255));
-    public Setting<Integer> topBlue = this.register(new Setting<Integer>("SecondBlue", 150, 0, 255));
     public Setting<Integer> alpha = this.register(new Setting<Integer>("HoverAlpha", 240, 0, 255));
     public Setting<Boolean> rainbow = this.register(new Setting<Boolean>("Rainbow", false));
     public Setting<rainbowMode> rainbowModeHud = this.register(new Setting<Object>("HRainbowMode", rainbowMode.Static, v -> this.rainbow.getValue()));
@@ -33,7 +42,7 @@ public class ClickGui
     private OyVeyGui click;
 
     public ClickGui() {
-        super("ClickGui", "Opens the ClickGui", Module.Category.CLIENT, true, false, false);
+        super("Client", "Client settings", Module.Category.CLIENT, true, false, false);
         this.setInstance();
     }
 
@@ -58,6 +67,7 @@ public class ClickGui
     @SubscribeEvent
     public void onSettingChange(ClientEvent event) {
         if (event.getStage() == 2 && event.getSetting().getFeature().equals(this)) {
+            OyVey.commandManager.setClientMessage(getCommandMessage());
             if (event.getSetting().equals(this.prefix)) {
                 OyVey.commandManager.setPrefix(this.prefix.getPlannedValue());
                 Command.sendMessage("Prefix set to " + ChatFormatting.DARK_GRAY + OyVey.commandManager.getPrefix());
@@ -75,6 +85,7 @@ public class ClickGui
     public void onLoad() {
         OyVey.colorManager.setColor(this.red.getValue(), this.green.getValue(), this.blue.getValue(), this.hoverAlpha.getValue());
         OyVey.commandManager.setPrefix(this.prefix.getValue());
+        OyVey.commandManager.setClientMessage(getCommandMessage());
     }
 
     @Override
@@ -82,6 +93,10 @@ public class ClickGui
         if (!(ClickGui.mc.currentScreen instanceof OyVeyGui)) {
             this.disable();
         }
+    }
+
+    public String getCommandMessage() {
+        return TextUtil.coloredString(this.commandBracket.getPlannedValue(), this.bracketColor.getPlannedValue()) + TextUtil.coloredString(this.command.getPlannedValue(), this.commandColor.getPlannedValue()) + TextUtil.coloredString(this.commandBracket2.getPlannedValue(), this.bracketColor.getPlannedValue());
     }
 
     public enum rainbowModeArray {

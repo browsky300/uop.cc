@@ -70,7 +70,6 @@ public class FontMod
         }
     }
     
-    
     @Override
     public String getDisplayInfo() {
         return fontName.getValue();

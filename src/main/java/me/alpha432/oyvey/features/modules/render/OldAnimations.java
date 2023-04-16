@@ -15,12 +15,11 @@ public class OldAnimations extends Module {
     }
     
     public void onUpdate() {
-        if (mode.getValue() != Mode.Old) return;
-        if (mc.entityRenderer.itemRenderer.prevEquippedProgressMainHand >= 0.9) {
+        if (mode.getValue() == Mode.Old && mc.entityRenderer.itemRenderer.prevEquippedProgressMainHand >= 0.9) {
             mc.entityRenderer.itemRenderer.equippedProgressMainHand = 1.0f;
             mc.entityRenderer.itemRenderer.itemStackMainHand = mc.player.getHeldItemMainhand();
         }
-        if (mc.entityRenderer.itemRenderer.prevEquippedProgressOffHand >= 0.9) {
+        if (mode.getValue() == Mode.Old && mc.entityRenderer.itemRenderer.prevEquippedProgressOffHand >= 0.9) {
             mc.entityRenderer.itemRenderer.equippedProgressOffHand = 1.0f;
             mc.entityRenderer.itemRenderer.itemStackOffHand = mc.player.getHeldItemOffhand();
         }

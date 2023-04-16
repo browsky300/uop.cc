@@ -7,7 +7,7 @@ import me.alpha432.oyvey.event.events.Render2DEvent;
 import me.alpha432.oyvey.event.events.Render3DEvent;
 import me.alpha432.oyvey.features.Feature;
 import me.alpha432.oyvey.features.command.Command;
-import me.alpha432.oyvey.features.modules.client.HUD;
+import me.alpha432.oyvey.features.modules.client.ClickGui;
 import me.alpha432.oyvey.features.setting.Bind;
 import me.alpha432.oyvey.features.setting.Setting;
 import net.minecraft.util.text.TextComponentString;
@@ -101,7 +101,7 @@ public class Module
         this.enabled.setValue(Boolean.TRUE);
         this.onToggle();
         this.onEnable();
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue() && !this.getDisplayName().contains("CAMessage")) {
+        if (ClickGui.getInstance().toggleMsg.getValue() && !this.getDisplayName().contains("CAMessage") && !this.getDisplayName().contains("Client")) {
             TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.GRAY +  this.getDisplayName() + ChatFormatting.GREEN +" on!");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -115,7 +115,7 @@ public class Module
             MinecraftForge.EVENT_BUS.unregister(this);
         }
         this.enabled.setValue(false);
-        if (HUD.getInstance().notifyToggles.getValue().booleanValue() && !this.getDisplayName().contains("CAMessage")) {
+        if (ClickGui.getInstance().toggleMsg.getValue() && !this.getDisplayName().contains("CAMessage") && !this.getDisplayName().contains("Client")) {
             TextComponentString text = new TextComponentString(OyVey.commandManager.getClientMessage() + " " + ChatFormatting.GRAY +  this.getDisplayName() + ChatFormatting.RED +" off.");
             Module.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(text, 1);
         }
@@ -188,7 +188,8 @@ public class Module
         RENDER("Render"),
         MOVEMENT("Movement"),
         PLAYER("Player"),
-        CLIENT("Client");
+        CLIENT("Client"),
+        HUD("HUD");
 
         private final String name;
 

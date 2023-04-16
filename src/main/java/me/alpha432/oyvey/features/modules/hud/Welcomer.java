@@ -1,13 +1,12 @@
-package me.alpha432.oyvey.features.modules.client;
+package me.alpha432.oyvey.features.modules.hud;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
 import me.alpha432.oyvey.event.events.Render2DEvent;
 import me.alpha432.oyvey.util.ColorUtil;
 import me.alpha432.oyvey.util.MathUtil;
-import me.alpha432.oyvey.OyVey;
 import me.alpha432.oyvey.features.modules.client.ClickGui;
-import me.alpha432.oyvey.features.modules.client.HUD;
+import me.alpha432.oyvey.features.modules.hud.Watermark;
 
 public class Welcomer extends Module {
 
@@ -17,16 +16,16 @@ public class Welcomer extends Module {
     public Setting<Integer> posY = register(new Setting("Y", 2, 0, 500));
 
     public Welcomer() {
-        super("Welcomer", "says hi to you :D", Category.CLIENT, true, false, false);
+        super("Welcomer", "says hi to you :D", Category.HUD, true, false, false);
     }
 
     public void onRender2D(Render2DEvent event) {
         String wStr = welcomerSetting.getValue();
-        wStr = wStr.replace("$c", HUD.getInstance().command.getValue());
+        wStr = wStr.replace("$c", ClickGui.getInstance().command.getValue());
         wStr = wStr.replace("$n", mc.player.getDisplayNameString());
         wStr = wStr.replace("$s", mc.getCurrentServerData() != null ? mc.getCurrentServerData().serverIP : "singleplayer");
         wStr = wStr.replace("$t", MathUtil.getShortTimeOfDay());
-        wStr = wStr.replace("$v", HUD.getInstance().version);
+        wStr = wStr.replace("$v", ClickGui.getInstance().version);
         
         int trueX = (int) (center.getValue() ? (this.renderer.scaledWidth - this.renderer.getStringWidth(wStr)) / 2 : posX.getValue());
         

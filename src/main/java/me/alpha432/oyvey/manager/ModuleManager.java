@@ -13,6 +13,7 @@ import me.alpha432.oyvey.features.modules.misc.*;
 import me.alpha432.oyvey.features.modules.movement.*;
 import me.alpha432.oyvey.features.modules.player.*;
 import me.alpha432.oyvey.features.modules.render.*;
+import me.alpha432.oyvey.features.modules.hud.*;
 import me.alpha432.oyvey.util.Util;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -35,15 +36,24 @@ public class ModuleManager
     public Animation animationThread;
 
     public void init() {
-        // client
+        //hud
+        this.modules.add(new ArmourHUD());
+        this.modules.add(new ArrayListJ());
         this.modules.add(new BetterPotions());
-        this.modules.add(new ClickGui());
+        this.modules.add(new Coords());
+        this.modules.add(new ConnectionInfo());
         this.modules.add(new Dashboard());
+        this.modules.add(new Radar());
+        this.modules.add(new TotemHUD());
+        this.modules.add(new Watermark());
+        this.modules.add(new Welcomer());
+
+        // client
+        this.modules.add(new ClickGui());
+        this.modules.add(new Debug());
         this.modules.add(new FontMod());
         this.modules.add(new HUD());
         this.modules.add(new MainMenu());
-        this.modules.add(new Radar());
-        this.modules.add(new Welcomer());
         
         // combat
         this.modules.add(new AntiDesyncC());

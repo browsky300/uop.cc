@@ -1,4 +1,4 @@
-package me.alpha432.oyvey.features.modules.client;
+package me.alpha432.oyvey.features.modules.hud;
 
 import me.alpha432.oyvey.features.modules.Module;
 import me.alpha432.oyvey.features.setting.Setting;
@@ -18,11 +18,11 @@ import java.awt.Color;
 public class Radar extends Module {
     
     public Setting<Integer> posX = register(new Setting("X", 2, 0, 1000));
-    public Setting<Integer> posY = register(new Setting("Y", 2, 0, 1000));
+    public Setting<Integer> posY = register(new Setting("Y", 11, 0, 1000));
     int count = 0;
     
     public Radar() {
-        super("Radar", "big awesome", Category.CLIENT, true, false, false);
+        super("Radar", "big awesome", Category.HUD, true, false, false);
     }
 
     public void onRender2D(Render2DEvent event) {

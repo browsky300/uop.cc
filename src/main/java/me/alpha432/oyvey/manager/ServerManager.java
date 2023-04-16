@@ -25,6 +25,10 @@ public class ServerManager
         return this.timer.passedMs(HUD.getInstance().lagTime.getValue().intValue());
     }
 
+    public boolean isLagging() {
+        return this.timer.passedMs(1000);
+    }
+
     public long serverRespondingTime() {
         return this.timer.getPassedTimeMs();
     }

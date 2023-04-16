@@ -30,6 +30,7 @@ public class BurrowESP extends Module {
     @Override
     public void onRender3D(Render3DEvent event) {
         for (EntityPlayer player : mc.world.playerEntities) {
+            if (player == mc.player) continue;
             BlockPos blockPos = new BlockPos(Math.floor(player.posX), Math.floor(player.posY + 0.2f), Math.floor(player.posZ));
             if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.OBSIDIAN) || mc.world.getBlockState(blockPos).getBlock().equals(Blocks.ENDER_CHEST)) {
                 RenderUtil.drawBoxESP(blockPos, new Color(red.getValue(), green.getValue(), blue.getValue(), outlineAlpha.getValue()), outlineWidth.getValue(), true, true, alpha.getValue());
