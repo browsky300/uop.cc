@@ -1233,10 +1233,10 @@ public class RenderUtil
         if (start) {
             GL11.glEnable(GL11.GL_POLYGON_OFFSET_FILL);
             GlStateManager.enablePolygonOffset();
-            GlStateManager.doPolygonOffset(1.0F, -2000000);
+            GlStateManager.doPolygonOffset(1.0F, -10000000);
         } else {
             GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
-            GlStateManager.doPolygonOffset(1.0F, 2000000);
+            GlStateManager.doPolygonOffset(1.0F, 10000000);
             GlStateManager.disablePolygonOffset();
         }
     }

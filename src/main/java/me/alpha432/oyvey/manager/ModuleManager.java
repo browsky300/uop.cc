@@ -91,6 +91,8 @@ public class ModuleManager
         
         // player
         this.modules.add(new ChestSwap());
+        this.modules.add(new ElytraDeploy());
+        this.modules.add(new GMSwitcher());
         this.modules.add(new Instamine());
         this.modules.add(new LeftHand());
         this.modules.add(new MCP());
