@@ -1,2 +1,2 @@
 # uop.cc
-oyvey but awesome
+the best client
