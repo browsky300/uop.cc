@@ -15,7 +15,7 @@ import me.alpha432.oyvey.util.TextUtil;
 public class ClickGui
         extends Module {
     private static ClickGui INSTANCE = new ClickGui();
-    public String version = "v1.0.0-BETA-OMG-HOLY-CRAP";
+    public String version = "v1.0.0";
     public Setting<Boolean> toggleMsg = this.register(new Setting<Boolean>("ToggleMessage", true));
     
     public Setting<String> prefix = this.register(new Setting<String>("Prefix", "."));
